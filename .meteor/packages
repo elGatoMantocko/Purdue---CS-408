@@ -7,6 +7,5 @@
 meteor-platform
 autopublish
 insecure
-force-ssl
 twbs:bootstrap
 less
