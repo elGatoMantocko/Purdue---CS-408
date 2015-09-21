@@ -1,0 +1,16 @@
+{
+  "name":"BetterBackground",
+  "description":"Heroku deployment for review apps.",
+  "scripts":{},
+  "env":{
+    "MONGO_URL":{
+      "required":true
+    },
+    "ROOT_URL":{
+      "required":true
+    }
+  },
+  "addons":[
+    "mongolab"
+  ]
+}
