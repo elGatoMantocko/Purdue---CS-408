@@ -25,3 +25,12 @@ velocity:core@0.10.0-rc.4
 velocity:html-reporter@0.9.0-rc.4
 xolvio:cucumber@0.14.0-rc.3
 sanjo:jasmine
+accounts-base
+accounts-password
+audit-argument-checks
+themeteorchef:bert
+browser-policy
+themeteorchef:jquery-validation
+fourseven:scss
+meteorhacks:ssr
+underscore
