@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-  - "0.12.5"
+  - "0.12"
 before_install:
-  - "curl -L http://git.io/3l-rRa | /bin/sh"
+  - "curl https://install.meteor.com/ | sh"
 services:
   - mongodb
 env:
