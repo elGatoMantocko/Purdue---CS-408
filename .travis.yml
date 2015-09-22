@@ -1,9 +1,10 @@
+sudo: required
 language: node_js
+  
 node_js:
   - "0.12"
-before_install:
+
+install:
   - "curl https://install.meteor.com/ | sh"
-services:
-  - mongodb
-env:
-  - MONGO_URL="mongodb://heroku_zg5hr70q:30301l17uugma07sjvd9vhkeik@ds051843.mongolab.com:51843/heroku_zg5hr70q"
+
+script: "./run-tests.sh"
