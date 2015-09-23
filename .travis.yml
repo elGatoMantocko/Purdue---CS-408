@@ -2,9 +2,9 @@ sudo: required
 language: node_js
   
 node_js:
-  - "0.12"
+  - "0.10"
 
-install:
+before_install:
   - "curl https://install.meteor.com/ | sh"
 
 script: "./run-tests.sh"
