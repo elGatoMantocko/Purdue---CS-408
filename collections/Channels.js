@@ -36,7 +36,7 @@ Channel = Astronomy.createClass({
   events: {
     'beforeSave': function(e) {
       // Set creator to current user's ID, or null otherwise
-      this.creator = Meteor.userId();
+      this.creator = this.userId;
     }
   },
 
