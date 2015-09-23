@@ -1,0 +1,9 @@
+# Operating System
+.DS_Store
+
+# Configuration
+settings-production.json
+npm-debug.log
+
+# Vim stuff
+*.swp
