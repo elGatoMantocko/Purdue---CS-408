@@ -1,8 +1,13 @@
+<head>
+  <title>BetterBackground</title>
+</head>
+
 <template name="layoutDefault">
-  {{>bertAlert}}
-  {{>header}}
+  {{> bertAlert}}
+  {{> Template.dynamic template=header}}
   <div class="container">
-    {{>yeild}}
+    <p>test</p>
+    {{> Template.dynamic template=main}}
   </div>
 </template>
 
