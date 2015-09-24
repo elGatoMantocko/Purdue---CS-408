@@ -3,7 +3,7 @@ Meteor.methods({
    * Inserts a Channel into the database
    *
    * @param {Channel} the Channel object to insert (Astronomy class)
-   * @return {string} the ID of the inserted Channel
+   * @return {Channel} the saved Channel
    */
   '/channels/new': function(channel) {
     // Check arguments
@@ -16,8 +16,8 @@ Meteor.methods({
     // Validate the Channel
     if(channel.validate()) {
       channel.set('creator', Meteor.userId());
-      let docId = channel.save();
-      return docId;
+      channel.save();
+      return channel;
     } else {
       // Send errors back to the client
       channel.throwValidationException();
