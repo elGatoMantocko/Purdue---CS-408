@@ -1,8 +1,6 @@
-Feature: One-liner description of this feature
-
-  As a [role]
-  I want [feature]
-  So that [benefit]
+Feature: Browse Channels
+  As a public user
+  I want to browse all channels
 
   The story above is to set context for the reader. It doesn't actually have any impact on the test
   itself. The phrases inside the scenarios are ties to test code using regex, which you can see in
@@ -13,19 +11,13 @@ Feature: One-liner description of this feature
 
   # The background will be run for every scenario
   Background:
-    Given I am a new user
+    Given I am signed out
+    And Channels collection is empty
 
-  # This scenario will run as part of the Meteor dev cycle because it has the @dev tag
   @dev
-  Scenario: This scenario will run on both dev and CI
+  Scenario: A public user can browse channels
     When I navigate to "/"
-    Then I should see the title "BetterBackground"
-
-  # This scenario will not run as part of the Meteor dev cycle because it does not have the @dev tag
-  # But it will run on CI if you use `meteor --test` for instance
-  Scenario: This scenario will not run on dev but does run on CI
-    When I navigate to "/"
-    Then I should see the title "BetterBackground"
+    Then I should see "0" channels 
 
   # The @ignore tag is a convenience tag included by meteor-cucumber. See the docs for more on tags
   @ignore

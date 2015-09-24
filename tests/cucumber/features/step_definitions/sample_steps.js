@@ -7,8 +7,13 @@ var url = require('url');
 
 module.exports = function () {
 
-  this.Given(/^I am a new user$/, function () {
-    server.call('reset'); // this.ddp is a connection to the mirror
+  this.Given(/^I am signed out$/, function () {
+    function logout(done) { Meteor.logout(done); }
+    this.browser.executeAsync(logout);
+  });
+
+  this.Given(/^Channels collection is empty$/, function() {
+    server.call('reset');
   });
 
   this.When(/^I navigate to "([^"]*)"$/, function (relativePath) {
@@ -17,10 +22,9 @@ module.exports = function () {
     client.url(url.resolve(process.env.ROOT_URL, relativePath));
   });
 
-  this.Then(/^I should see the title "([^"]*)"$/, function (expectedTitle) {
+  this.Then(/^I should see "([^"]*)" channels$/, function (expectedCount) {
     // you can use chai in step definitions also
-    client.waitForExist('title');
-    expect(client.getTitle()).to.equal(expectedTitle);
+    expect(client.elements('.channel').value.length).to.equal(parseInt(expectedCount));
   });
 
 };
