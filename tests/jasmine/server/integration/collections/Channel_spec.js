@@ -89,4 +89,31 @@ describe('Channel collection', function() {
     expect(channel.validate()).toBe(false);
   });
 
+  describe('creator field', function() {
+
+    var fakeUser;
+    beforeEach(function() {
+      fakeUser = {
+        _id: '12345'
+      };
+      spyOn(Meteor, 'user').and.returnValue(fakeUser);
+      spyOn(Meteor, 'userId').and.returnValue(fakeUser._id);
+    });
+
+    it('should be automatically set when we are logged in', function() {
+      let channel = new Channel();
+      channel.set({
+        title: 'My Test Channel',
+        query: 'little flower ponies'
+      });
+      expect(channel.validate()).toBe(true);
+      let docId = Meteor.call('/channels/new', channel);
+      channel = Channel.findOne({_id: docId});
+      expect(channel.get('creator')).toEqual(fakeUser._id);
+
+      // Clean up
+      channel.remove();
+    });
+  });
+
 });
