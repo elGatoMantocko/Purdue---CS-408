@@ -10,7 +10,6 @@ Channel = Astronomy.createClass({
       validator: [
         Validators.required(),
         Validators.string(),
-        Validators.minLength(3),
         Validators.maxLength(30)
       ]
     },

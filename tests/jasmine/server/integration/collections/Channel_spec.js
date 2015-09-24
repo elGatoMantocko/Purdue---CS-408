@@ -62,14 +62,6 @@ describe('Channel collection', function() {
       expect(channel.validate()).toBe(false);
     });
 
-    it('requires that the title is at least 3 characters', function() {
-      let channel = new Channel({
-        title: 'no',
-        query: 'query'
-      });
-      expect(channel.validate()).toBe(false);
-    });
-
     it('requires that the title is at most 30 characters', function() {
       let channel = new Channel({
         // 30 Characters
