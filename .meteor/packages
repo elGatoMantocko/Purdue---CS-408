@@ -34,3 +34,5 @@ themeteorchef:jquery-validation
 fourseven:scss
 meteorhacks:ssr
 underscore
+kadira:flow-router
+kadira:blaze-layout
