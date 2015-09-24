@@ -4,4 +4,10 @@ FlowRouter.route('/', {
   }
 });
 
+FlowRouter.route('/login', {
+  action: function() {
+    BlazeLayout.render("layoutDefault", {header: "navigation", main: "login"})
+  }
+});
+
 
