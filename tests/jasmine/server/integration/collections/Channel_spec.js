@@ -131,6 +131,21 @@ describe('Channel collection', function() {
       // Clean up
       channel.remove();
     });
+
+    it('can not be set again after initial insertion', function() {
+      let channel = new Channel({
+        title: 'My Test Channel',
+        query: 'little flower ponies'
+      });
+      channel = Meteor.call('/channels/new', channel);
+
+      channel.set('creator', 'a different id');
+
+      expect(channel.get('creator')).not.toEqual('a different id');
+
+      // Clean up
+      channel.remove();
+    });
   });
 
 });
