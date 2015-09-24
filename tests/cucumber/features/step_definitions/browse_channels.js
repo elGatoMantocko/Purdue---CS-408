@@ -9,6 +9,7 @@ module.exports = function () {
 
   this.Given(/^I am signed out$/, function () {
     function logout(done) { Meteor.logout(done); }
+
     this.browser.executeAsync(logout);
   });
 
