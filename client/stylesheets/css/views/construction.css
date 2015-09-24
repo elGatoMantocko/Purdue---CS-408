@@ -11,6 +11,10 @@ body, html {
 	background-color: transparent;
 }
 
+body {
+  padding-top: 40px;
+}
+
 h1 {
 	text-align: center;
 	font-family: 'intro_rust_gbase_2_line';
