@@ -1,4 +1,4 @@
-Feature: Browse Channels
+Feature: Channels
   As a public user
   I want to browse all channels
 
