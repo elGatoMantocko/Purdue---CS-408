@@ -8,7 +8,7 @@ Feature: Browse Channels
 
   @dev
   Scenario: There are no channels in the collection
-    Given I am on "/"
+    When I navigate to "/"
     Then I should see "0" channels 
 
   # The @ignore tag is a convenience tag included by meteor-cucumber. See the docs for more on tags

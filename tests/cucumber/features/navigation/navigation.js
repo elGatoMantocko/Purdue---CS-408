@@ -11,8 +11,7 @@ module.exports = function () {
     client.url(process.env.ROOT_URL);
   });
 
-  this.When(/^I am on "([^"]*)"$/, function (relativePath) {
+  this.When(/^I navigate to "([^"]*)"$/, function (relativePath) {
     client.url(url.resolve(process.env.ROOT_URL, relativePath));
   });
-
 };
