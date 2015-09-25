@@ -17,11 +17,9 @@ module.exports = function () {
   });
 
   this.When(/^I enter my authentication information$/, function() {
-    return 1;
   });
 
   this.Then(/^I should be logged in$/, function() {
-    return 1;
   });
 
 };
