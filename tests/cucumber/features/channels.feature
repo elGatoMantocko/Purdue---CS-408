@@ -8,7 +8,7 @@ Feature: Browse Channels
     And Channels collection is empty
 
   @dev
-  Scenario: A public user can browse channels
+  Scenario: There are no channels in the collection
     When I navigate to "/"
     Then I should see "0" channels 
 
