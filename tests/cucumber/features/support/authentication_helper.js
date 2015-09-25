@@ -18,13 +18,9 @@ module.exports = function () {
       },
 
       createAccount: function (profile) {
-        profile = profile || {
-          periodEnd: Math.floor(new Date().getTime() / 1000)
-        };
-
         return server.call('fixtures/createAccount', {
           email: 'me@example.com',
-          password: 'letme1n',
+          password: 'password',
           profile: profile
         });
       },
