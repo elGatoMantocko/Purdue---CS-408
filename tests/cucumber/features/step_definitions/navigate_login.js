@@ -7,12 +7,6 @@ var url = require('url');
 
 module.exports = function () {
 
-  //this.Given(/^I am signed out$/, function() {
-    //function logout(done) { Meteor.logout(done); }
-
-    //this.browser.executeAsync(logout);
-  //});
-
   this.Given(/^I am on "([^"]*)"$/, function(relativePath) {
     client.url(url.resolve(process.env.ROOT_URL, relativePath));
   });
