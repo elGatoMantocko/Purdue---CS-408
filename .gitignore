@@ -9,4 +9,4 @@ npm-debug.log
 *.swp
 
 # Ignore all snapshots
-*.png
+tests/cucumber/.screenshots/
