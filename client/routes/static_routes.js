@@ -4,9 +4,9 @@ FlowRouter.route('/', {
   }
 });
 
-FlowRouter.route('/login', {
+FlowRouter.route('/newchannel', {
   action: function() {
-    BlazeLayout.render("layoutDefault", {header: "navigation", main: "login"})
+    BlazeLayout.render("layoutDefault", {header: "navigation", main: "newchannel"})
   }
 });
 
