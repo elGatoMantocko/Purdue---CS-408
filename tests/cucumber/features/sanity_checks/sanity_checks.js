@@ -2,10 +2,6 @@
 
 module.exports = function () {
 
-  this.Given(/^I am a new user$/, function (callback) {
-    callback();
-  });
-
   this.Then(/^I should see the title "([^"]*)"$/, function (expectedTitle) {
     client.waitForExist('title');
 
