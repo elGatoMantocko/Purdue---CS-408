@@ -1,5 +1,3 @@
-'use strict';
-
 // You can include npm dependencies for support files in tests/cucumber/package.json
 var _ = require('underscore');
 // You can use normal require here, cucumber is NOT run in a Meteor context (by design)
@@ -12,9 +10,14 @@ module.exports = function () {
   });
 
   this.Then(/^I should see "([^"]*)" channels$/, function (expectedCount) {
-    // you can use chai in step definitions also
-    //client.waitForVisible('.channel');
-    expect(client.elements('.channel').value.length).toEqual(parseInt(expectedCount));
+    expectedCount = parseInt(expectedCount);
+
+    if(expectedCount > 0) {
+      client.waitForVisible('.channel');
+    }
+
+    var numberOfChannelsOnPage = client.elements('.channel').value.length;
+    expect(numberOfChannelsOnPage).toEqual(expectedCount);
   });
 
 };
