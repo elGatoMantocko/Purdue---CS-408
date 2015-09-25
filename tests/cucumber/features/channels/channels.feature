@@ -10,9 +10,3 @@ Feature: Browse Channels
   Scenario: There are no channels in the collection
     When I navigate to "/"
     Then I should see "0" channels 
-
-  # The @ignore tag is a convenience tag included by meteor-cucumber. See the docs for more on tags
-  @ignore
-  Scenario: This scenario will not run anywhere
-    When I navigate to "/"
-    Then I should see the title "it really doesn't matter"
