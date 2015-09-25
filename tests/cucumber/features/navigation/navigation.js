@@ -7,7 +7,7 @@ var url = require('url');
 
 module.exports = function () {
 
-  this.Given(/^I am on the home page"$/, function() {
+  this.Given(/^I am on the home page$/, function () {
     client.url(process.env.ROOT_URL);
   });
 
