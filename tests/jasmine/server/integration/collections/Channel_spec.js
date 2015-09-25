@@ -44,6 +44,20 @@ describe('Channel collection', function() {
     }
   });
 
+  it('throws validation exception when given bad data', function() {
+    let channel = new Channel({
+      title: '',
+      query: ''
+    });
+
+    Meteor.call('/channels/new', channel, function(err) {
+      channel.catchValidationException(err);
+      let errors = channel.getValidationErrors();
+      expect(channel.hasValidationErrors()).toBe(true);
+      expect(errors.title).not.toBeNull();
+      expect(errors.query).not.toBeNull();
+    });
+  });
 
   describe('title field', function() {
     it('requires the title', function() {
