@@ -7,15 +7,12 @@ var url = require('url');
 
 module.exports = function () {
 
-  this.Given(/^I am on "([^"]*)"$/, function(relativePath) {
+  this.Given(/^I am on the home page"$/, function() {
+    client.url(process.env.ROOT_URL);
+  });
+
+  this.When(/^I am on "([^"]*)"$/, function (relativePath) {
     client.url(url.resolve(process.env.ROOT_URL, relativePath));
-  });
-
-  this.When(/^I click the Login button$/, function() {
-    client.click('#login-btn');
-  });
-
-  this.Then(/^I am redirected to \"\/login\"$/, function() {
   });
 
 };
