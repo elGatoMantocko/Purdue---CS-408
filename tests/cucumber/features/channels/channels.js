@@ -14,7 +14,7 @@ module.exports = function () {
   this.Then(/^I should see "([^"]*)" channels$/, function (expectedCount) {
     // you can use chai in step definitions also
     //client.waitForVisible('.channel');
-    expect(client.elements('.channel').value.length == parseInt(expectedCount));
+    expect(client.elements('.channel').value.length).toEqual(parseInt(expectedCount));
   });
 
 };
