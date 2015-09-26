@@ -12,8 +12,6 @@ module.exports = function () {
   });
 
   this.When(/^I click the login button$/, function() {
-    client.url(process.env.ROOT_URL);
-
     client.waitForExist(".container-fluid", 1000);
     client.waitForVisible(".container-fluid", 1000);
 
