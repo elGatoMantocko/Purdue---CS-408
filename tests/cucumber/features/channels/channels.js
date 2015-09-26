@@ -7,7 +7,7 @@ var url = require('url');
 
 module.exports = function () {
 
-  this.Given(/^Channels collection is empty$/, function() {
+  this.Given(/^The "([^"]*)" collection is empty$/, function(collection) {
     server.call('reset');
   });
 
