@@ -14,7 +14,7 @@ Feature: Channels
     Then I should see "0" channels 
 
   @dev
-  Scenario: Navigate to new channel page
+  Scenario: While logged out, navigate to new channel page 
     Given I am on the home page
     When I click on "#newchannel-btn"
-
+    Then The element "#newchannel-header" should have text "You must log in first"

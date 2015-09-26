@@ -8,10 +8,13 @@ var url = require('url');
 module.exports = function () {
 
   this.When(/^I click on "([^"]*)"/, function(clickableElement) {
-    client.waitForExist(".container-fluid", 1000);
-    client.waitForVisible(".container-fluid", 1000);
+    client.waitForVisible(".container-fluid");
 
     client.click(clickableElement);
+  });
+
+  this.Then(/^The element "([^"]*)" should have text "([^"]*)"$/, function (selector, text) {
+    expect(client.getText(selector)).toBe(text);
   });
 
 };
