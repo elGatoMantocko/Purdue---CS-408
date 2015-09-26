@@ -7,6 +7,10 @@ var url = require('url');
 
 module.exports = function () {
 
+  this.Given(/^I am signed out$/, function() {
+    this.AuthenticationHelper.logout();
+  });
+
   this.When(/^I click the login button$/, function() {
     client.url(process.env.ROOT_URL);
 
