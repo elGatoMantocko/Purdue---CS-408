@@ -9,6 +9,6 @@ Feature: Login
 
   @dev
   Scenario: A user can login with valid information
-    When I click the login button
+    When I click on "#login-btn"
     And I enter my authentication information
     Then I should be logged in

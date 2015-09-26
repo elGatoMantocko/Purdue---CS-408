@@ -7,14 +7,11 @@ var url = require('url');
 
 module.exports = function () {
 
-  this.Given(/^I am signed out$/, function() {
-    this.AuthenticationHelper.logout();
-  });
+  this.When(/^I click on "([^"]*)"/, function(clickableElement) {
+    client.waitForExist(".container-fluid", 1000);
+    client.waitForVisible(".container-fluid", 1000);
 
-  this.When(/^I enter my authentication information$/, function() {
-  });
-
-  this.Then(/^I should be logged in$/, function() {
+    client.click(clickableElement);
   });
 
 };
