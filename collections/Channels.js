@@ -32,6 +32,12 @@ Channel = Astronomy.createClass({
     }
   },
 
+  events: {
+    beforeInsert: function(e) {
+      this.set('creator', Meteor.userId());
+    }
+  },
+
   /* createdAt and updatedAt fields */
   behaviors: ['timestamp']
 });

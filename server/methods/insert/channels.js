@@ -15,7 +15,6 @@ Meteor.methods({
 
     // Validate the Channel
     if(channel.validate()) {
-      channel.set('creator', Meteor.userId());
       channel.save();
       return channel;
     } else {
