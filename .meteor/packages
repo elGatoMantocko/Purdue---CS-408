@@ -23,8 +23,8 @@ spacebars
 check
 velocity:core@0.10.0-rc.4
 velocity:html-reporter@0.9.0-rc.4
-xolvio:cucumber@0.14.0-rc.3
 sanjo:jasmine
+xolvio:cucumber@0.14.0-rc.3
 accounts-base
 accounts-password
 audit-argument-checks
@@ -34,3 +34,7 @@ themeteorchef:jquery-validation
 fourseven:scss
 meteorhacks:ssr
 underscore
+jagi:astronomy@1.0.0-rc.5
+jagi:astronomy-validators@1.0.0-rc.3
+jagi:astronomy-timestamp-behavior
+ecmascript
