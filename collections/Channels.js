@@ -46,7 +46,7 @@ Channel = Astronomy.createClass({
  * Queries for the latest Channels, sorted by creation date.
  *
  * @param {number} limit The number of channels to fetch, capped at 100
- * @return {Array.<Channel>} the list of fetched channels
+ * @return {Mongo.Cursor} the resulting Mongo cursor from find()
  */
 Channel.getLatest = function(limit) {
   // Default to 20
