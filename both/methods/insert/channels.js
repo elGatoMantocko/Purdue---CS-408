@@ -2,7 +2,7 @@ Meteor.methods({
   /*
    * Inserts a Channel into the database
    *
-   * @param {Channel} the Channel object to insert (Astronomy class)
+   * @param {Channel} channel Channel object to insert (Astronomy class)
    * @return {Channel} the saved Channel
    */
   '/channels/new': function(channel) {
