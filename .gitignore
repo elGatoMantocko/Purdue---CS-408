@@ -7,3 +7,7 @@ npm-debug.log
 
 # Vim stuff
 *.swp
+
+# Ignore all snapshots
+tests/cucumber/.screenshots/
+tests/cucumber/*.png
