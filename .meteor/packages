@@ -34,3 +34,7 @@ themeteorchef:jquery-validation
 fourseven:scss
 meteorhacks:ssr
 underscore
+meteorhacks:npm
+
+
+npm-container
