@@ -161,8 +161,8 @@ describe('Channel collection', function() {
 
     it('should limit the "limit" parameter', function() {
       Channel.getLatest(1000);
-      // Check that Channel.find was called with its limit argument set at 100
-      expect(Channel.find.calls.argsFor(0)[1].limit).toEqual(100);
+      // Check that Channel.find was called with its limit argument less than what we tried above
+      expect(Channel.find.calls.argsFor(0)[1].limit).toBeLessThan(1000);
     });
 
     it('should provide a default limit to the query', function() {
