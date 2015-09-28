@@ -154,4 +154,27 @@ describe('Channel collection', function() {
     });
   });
 
+  describe('#getLatest', function() {
+    beforeEach(function() {
+      spyOn(Channel, 'find').and.callThrough();
+    });
+
+    it('should limit the "limit" parameter', function() {
+      Channel.getLatest(1000);
+      // Check that Channel.find was called with its limit argument set at 100
+      expect(Channel.find.calls.argsFor(0)[1].limit).toEqual(100);
+    });
+
+    it('should provide a default limit to the query', function() {
+      Channel.getLatest();
+      // Check that the call to Channel.find did have a limit argument
+      expect(Channel.find.calls.argsFor(0)[1].limit).not.toBeUndefined();
+    });
+
+    it('should sort the results by creation date in descending order', function() {
+      Channel.getLatest();
+      expect(Channel.find.calls.argsFor(0)[1].sort).toEqual({createdAt: -1});
+    });
+  });
+
 });
