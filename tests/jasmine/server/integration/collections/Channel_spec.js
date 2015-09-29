@@ -8,7 +8,6 @@ describe('Channel collection', function() {
       _id: '12345',
       username: 'Fakey'
     };
-    this.userSpy = spyOn(Meteor, 'user').and.returnValue(this.fakeUser);
     this.userIdSpy = spyOn(Meteor, 'userId').and.returnValue(this.fakeUser._id);
   });
 
@@ -18,7 +17,7 @@ describe('Channel collection', function() {
       query: 'save'
     });
 
-    channel = Meteor.call('/channels/new', channel);
+    channel.save();
 
     // We should be able to find that document
     expect(Channel.find({title: 'Save Test'}).count()).toEqual(1);
@@ -27,33 +26,16 @@ describe('Channel collection', function() {
     channel.remove();
   });
 
-  it('throws if we are NOT logged in', function() {
-    // Call through to the original Meteor.user() implementation
-    //   This will return 'null' because we're obviously not logged in
-    this.userSpy.and.callThrough();
-    let channel = new Channel({
-      title: 'Logged out',
-      query: 'Should throw'
-    });
-
-    try {
-      Meteor.call('/channels/new', channel);
-      fail('method should throw if we are not logged in');
-    } catch(e) {
-      // Test succeeded
-    }
-  });
-
   it('throws validation exception when given bad data', function() {
     let channel = new Channel({
       title: '',
       query: ''
     });
 
-    Meteor.call('/channels/new', channel, function(err) {
-      channel.catchValidationException(err);
-      let errors = channel.getValidationErrors();
-      expect(channel.hasValidationErrors()).toBe(true);
+    channel.save(function(err, id) {
+      this.catchValidationException(err);
+      let errors = this.getValidationErrors();
+      expect(this.hasValidationErrors()).toBe(true);
       expect(errors.title).not.toBeNull();
       expect(errors.query).not.toBeNull();
     });
@@ -131,7 +113,7 @@ describe('Channel collection', function() {
         query: 'little flower ponies'
       });
       expect(channel.validate()).toBe(true);
-      channel = Meteor.call('/channels/new', channel);
+      channel.save();
       expect(channel.get('creator')).toEqual(this.fakeUser._id);
 
       // Clean up
@@ -143,7 +125,7 @@ describe('Channel collection', function() {
         title: 'My Test Channel',
         query: 'little flower ponies'
       });
-      channel = Meteor.call('/channels/new', channel);
+      channel.save();
 
       channel.set('creator', 'a different id');
 
