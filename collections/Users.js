@@ -46,5 +46,19 @@ User = Astronomy.createClass({
         return {};
       }
     }
+  },
+
+  methods: {
+
+    /*
+     * Subscribes this user to the given channel
+     * @param{Channel} channel The channel to subscribe to
+     * @return{User} This user
+     */
+    subscribeTo(channel) {
+      this.push('profile.channelSubscriptions', channel.get('_id'));
+      this.save();
+      return this;
+    }
   }
 });
