@@ -32,14 +32,9 @@ describe('User class', function() {
       title: 'Fake channel',
       query: 'galaxies'
     });
-
-    // Save the channel
-    let channelId = channel.save();
-
-    // Subscribe the user to the created channel
+    channel.save();
     this.user.subscribeTo(channel);
-
-    expect(this.user.get('profile').channelSubscriptions).toContain(channelId);
+    expect(this.user.getSubscriptions()).toContain(channel);
   });
 
   describe('User Profile', function() {

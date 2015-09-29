@@ -49,6 +49,16 @@ User = Astronomy.createClass({
   },
 
   methods: {
+    /*
+     * Returns an array of this user's subscribed channels
+     * @return{Array.<Channel>}
+     */
+    getSubscriptions() {
+      let subscriptions = this.get('profile').channelSubscriptions;
+      return Channel.find({
+        _id: {$in: subscriptions}
+      }).fetch();
+    },
 
     /*
      * Subscribes this user to the given channel
