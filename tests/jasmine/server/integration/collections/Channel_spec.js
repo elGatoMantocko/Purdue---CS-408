@@ -167,8 +167,7 @@ describe('Channel collection', function() {
         expect(images[i].url).not.toEqual('');
       }
 
-      // Clean up
-      images.remove(); 
+      // Clean up 
       channel.remove();
     });
   });
