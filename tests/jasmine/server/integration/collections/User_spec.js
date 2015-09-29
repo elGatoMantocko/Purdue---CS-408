@@ -30,7 +30,7 @@ describe('User class', function() {
   });
 
   it('can subscribe to channels', function() {
-    // Create a new channel
+    // Create a new channel and subscribe to it
     let channel = new Channel({
       title: 'Fake channel',
       query: 'galaxies'
@@ -38,6 +38,19 @@ describe('User class', function() {
     channel.save();
     this.user.subscribeTo(channel);
     expect(this.user.getSubscriptions()).toContain(channel);
+  });
+
+  it('can unsubscribe from channels', function() {
+    // Create a new channel and subscribe to it
+    let channel = new Channel({
+      title: 'Fake channel',
+      query: 'galaxies'
+    });
+    channel.save();
+    this.user.subscribeTo(channel);
+    expect(this.user.getSubscriptions()).toContain(channel);
+    this.user.unsubscribeFrom(channel);
+    expect(this.user.getSubscriptions()).not.toContain(channel);
   });
 
   describe('User Profile', function() {

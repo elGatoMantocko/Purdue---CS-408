@@ -54,7 +54,7 @@ User = Astronomy.createClass({
      * @return{Array.<Channel>}
      */
     getSubscriptions() {
-      let subscriptions = this.get('profile').channelSubscriptions;
+      let subscriptions = this.get('profile.channelSubscriptions');
       return Channel.find({
         _id: {$in: subscriptions}
       }).fetch();
@@ -68,6 +68,22 @@ User = Astronomy.createClass({
     subscribeTo(channel) {
       this.push('profile.channelSubscriptions', channel.get('_id'));
       this.save();
+      return this;
+    },
+
+    /*
+     * Unsubscribes this user from the given channel
+     * @param{Channel} channel The channel to unsubscribe from
+     * @return{User} this user
+     */
+    unsubscribeFrom(channel) {
+      let subscriptions = this.get('profile.channelSubscriptions'),
+          channelIndex = subscriptions.indexOf(channel.get('_id'));
+      if(channelIndex > -1) {
+        subscriptions.splice(channelIndex, 1);
+        this.profile.channelSubscriptions = subscriptions;
+        this.save();
+      }
       return this;
     }
   }
