@@ -11,6 +11,11 @@ describe('Channel collection', function() {
     this.userIdSpy = spyOn(Meteor, 'userId').and.returnValue(this.fakeUser._id);
   });
 
+  afterEach(function() {
+    // Remove any channels we've created
+    Channel.remove({});
+  });
+
   it('can correctly save a document', function() {
     let channel = new Channel({
       title: 'Save Test',
@@ -21,9 +26,6 @@ describe('Channel collection', function() {
 
     // We should be able to find that document
     expect(Channel.find({title: 'Save Test'}).count()).toEqual(1);
-
-    // Clean up
-    channel.remove();
   });
 
   it('throws validation exception when given bad data', function() {
@@ -115,9 +117,6 @@ describe('Channel collection', function() {
       expect(channel.validate()).toBe(true);
       channel.save();
       expect(channel.get('creator')).toEqual(this.fakeUser._id);
-
-      // Clean up
-      channel.remove();
     });
 
     it('can not be set again after initial insertion', function() {
@@ -130,9 +129,6 @@ describe('Channel collection', function() {
       channel.set('creator', 'a different id');
 
       expect(channel.get('creator')).not.toEqual('a different id');
-
-      // Clean up
-      channel.remove();
     });
   });
 

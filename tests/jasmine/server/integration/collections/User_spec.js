@@ -22,8 +22,11 @@ describe('User class', function() {
   });
 
   afterEach(function() {
-    // Clean up
-    this.user.remove();
+    // Clear all current users
+    Meteor.users.remove({});
+
+    // Clear all channels
+    Channel.remove({});
   });
 
   it('can subscribe to channels', function() {
