@@ -154,4 +154,23 @@ describe('Channel collection', function() {
     });
   });
 
+  describe('image fetcher', function() {
+    it('should return images from the channel query', function() {
+      let channel = new Channel({
+        title: 'My Test Channel',
+        query: 'little flower ponies'
+      });
+      channel = Meteor.call('/channels/new', channel);
+
+      images = Meteor.call('/channels/', channel);
+      for (i = 0; i < images.length; i++) {
+        expect(images[i].url).not.toEqual('');
+      }
+
+      // Clean up
+      images.remove(); 
+      channel.remove();
+    });
+  });
+
 });
