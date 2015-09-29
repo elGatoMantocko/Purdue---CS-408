@@ -28,21 +28,6 @@ describe('Channel collection', function() {
     expect(Channel.find({title: 'Save Test'}).count()).toEqual(1);
   });
 
-  it('throws validation exception when given bad data', function() {
-    let channel = new Channel({
-      title: '',
-      query: ''
-    });
-
-    channel.save(function(err, id) {
-      this.catchValidationException(err);
-      let errors = this.getValidationErrors();
-      expect(this.hasValidationErrors()).toBe(true);
-      expect(errors.title).not.toBeNull();
-      expect(errors.query).not.toBeNull();
-    });
-  });
-
   describe('title field', function() {
     it('requires the title', function() {
       let channel = new Channel({
