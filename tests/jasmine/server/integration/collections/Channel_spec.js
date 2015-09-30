@@ -170,6 +170,21 @@ describe('Channel collection', function() {
       // Clean up 
       channel.remove();
     });
+    it('should return urls fromt he channel query', function() {
+      let channel = new Channel({
+        title: 'My Test Channel',
+        query: 'little flower ponies'
+      });
+      channel = Meteor.call('/channels/new', channel);
+
+      urls = Meteor.call('getUrls', channel);
+      for (i = 0; i < urls.length; i++) {
+        expect(urls[i]).not.toEqual('');
+      }
+
+      // Clean up 
+      channel.remove();
+    });
   });
 
 });

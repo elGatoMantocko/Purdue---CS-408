@@ -17,5 +17,19 @@ Meteor.methods({
     } else {
       channel.throwValidationsException();
     }
+  },
+  
+  getUrls: function(channel) {
+    // Check Arguments
+    check(channel, Channel);
+
+    // Check if the user is logged in? Not sure this is necessary
+    // if(!Meteor.user()) throw new Meteor.Error('logged-out','You must be logged in to create a channel.');
+    
+    if (channel.validate()) {
+      return Modules.both.getUrls(channel);
+    } else {
+      channel.throwValidationsException();
+    }
   }
 });
