@@ -3,11 +3,11 @@ module.exports = function () {
 
     this.AuthenticationHelper = {
       login: function () {
-        client.waitForExist('#login-btn');
-        client.click('#login-btn');
-        //client.setValue('#login-email', 'me@example.com');
-        //client.setValue('#login-password', 'letme1n');
-        //client.click('.login-button-form-submit');
+        client.waitForExist('a.dropdown-toggle');
+        client.click('a.dropdown-toggle');
+        client.setValue('input#login-email', 'me@example.com');
+        client.setValue('input#login-password', 'letme1n');
+        client.click('button#login-buttons-password');
         //client.waitForExist('#login-name-link');
       },
 

@@ -11,6 +11,13 @@ module.exports = function () {
     this.AuthenticationHelper.logout();
   });
 
+  this.Given(/^I am signed in$/, function() {
+    this.AuthenticationHelper.login();
+  });
+
+  this.Given(/^"([^"]*)" has not registered$/, function (arg1) {
+  });
+
   this.When(/^I enter my authentication information$/, function() {
   });
 
