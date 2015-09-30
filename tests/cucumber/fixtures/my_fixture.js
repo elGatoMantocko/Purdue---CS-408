@@ -1,12 +1,8 @@
-(function () {
+'use strict';
 
-  'use strict';
-
-  Meteor.methods({
+Meteor.methods({
     
-    'reset_users': function() {
-      Meteor.users.remove({});
-    }
-  });
-
-})();
+  'reset_users': function() {
+    Meteor.users.remove({});
+  }
+});
