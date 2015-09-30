@@ -40,6 +40,33 @@ describe('User class', function() {
     expect(this.user.getSubscriptions()).toContain(channel);
   });
 
+  it('can check whether it is subscribed to a channel', function() {
+    // Create a new channel and subscribe to it
+    let channel = new Channel({
+      title: 'Fake channel',
+      query: 'galaxies'
+    });
+    channel.save();
+    this.user.subscribeTo(channel);
+    expect(this.user.isSubscribedTo(channel)).toBe(true);
+  });
+
+  it('throws when trying to subscribe to the same channel twice', function() {
+    // Create a new channel and subscribe to it
+    let channel = new Channel({
+      title: 'Fake channel',
+      query: 'galaxies'
+    });
+    channel.save();
+    this.user.subscribeTo(channel);
+    try {
+      this.user.subscribeTo(channel);
+      fail('User should not be able to subscribe to the same channel twice');
+    } catch(e) {
+      expect(e.error).toBe('duplicate-channel-subscription');
+    }
+  });
+
   it('can unsubscribe from channels', function() {
     // Create a new channel and subscribe to it
     let channel = new Channel({

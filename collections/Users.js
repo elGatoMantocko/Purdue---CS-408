@@ -51,6 +51,7 @@ User = Astronomy.createClass({
   methods: {
     /*
      * Returns an array of this user's subscribed channels
+     * 
      * @return{Array.<Channel>}
      */
     getSubscriptions() {
@@ -61,11 +62,34 @@ User = Astronomy.createClass({
     },
 
     /*
+     * Tests whether this User is already subscribed to the given channel
+     *
+     * @param{Channel} channel The channel to check whether this user is subscribed to or not
+     * @return{Boolean}
+     */
+    isSubscribedTo(channel) {
+      // Test whether any of my subscribed channels' IDs are equal to the passed channel's ID
+      return this.getSubscriptions().some((testChannel) => {
+        return channel.get('_id') === testChannel.get('_id');
+      });
+    },
+
+    /*
      * Subscribes this user to the given channel
+     * Throws Meteor.Error when trying to subscribe to the same channel twice
+     *
      * @param{Channel} channel The channel to subscribe to
      * @return{User} This user
      */
     subscribeTo(channel) {
+
+      // Make sure we aren't already subscribed to this channel
+      if(this.isSubscribedTo(channel)) {
+        throw new Meteor.Error('duplicate-channel-subscription', 'You are already subscribed to this channel.');
+      }
+
+
+      // Add the channel's ID to my subscribed channel list
       this.push('profile.channelSubscriptions', channel.get('_id'));
       this.save();
       return this;
@@ -73,6 +97,7 @@ User = Astronomy.createClass({
 
     /*
      * Unsubscribes this user from the given channel
+     *
      * @param{Channel} channel The channel to unsubscribe from
      * @return{User} this user
      */
