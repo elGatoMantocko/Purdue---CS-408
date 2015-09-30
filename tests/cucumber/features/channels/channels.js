@@ -8,7 +8,6 @@ var url = require('url');
 module.exports = function () {
 
   this.Given(/^The "([^"]*)" collection is empty$/, function(collection) {
-    server.call('reset');
   });
 
   this.Then(/^I should see "([^"]*)" channels$/, function (expectedCount) {
