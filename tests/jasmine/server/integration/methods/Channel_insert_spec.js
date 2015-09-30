@@ -24,7 +24,7 @@ describe('Channel insert method', function() {
       Meteor.call('/channels/new', channel);
       fail('method should throw if we are not logged in');
     } catch(e) {
-      // Test succeeded
+      expect(e.error).toBe('unauthorized');
     }
   });
 
