@@ -5,7 +5,7 @@
  * @param {page} the page you want to return
  * @return {String[]} an array of urls
  */
-let urlsOnly = (channel, page) => {
+let getUrls = (channel, page) => {
   // Grabs the necessary packages
   var GoogleImages = Meteor.npmRequire('google-images');
   var Future = Meteor.npmRequire('fibers/future');
@@ -25,4 +25,4 @@ let urlsOnly = (channel, page) => {
   return fut.wait();
 };
 
-Modules.both.getUrls = urlsOnly;
+Modules.both.getUrls = getUrls;
