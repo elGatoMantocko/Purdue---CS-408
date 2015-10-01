@@ -5,7 +5,7 @@
     module.exports = function () {
         this.Before(function () {
           server.call('addUser', {
-            email: 'me@example.com'
+            username: 'Phony'
           });
         });
     };

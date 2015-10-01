@@ -6,7 +6,7 @@ Meteor.methods({
     check(opts, Object);
     Meteor.users.remove({});
     Accounts.createUser({
-      email: opts.email,
+      username: opts.username,
       password: opts.password ? opts.password : "password"
     });
   }

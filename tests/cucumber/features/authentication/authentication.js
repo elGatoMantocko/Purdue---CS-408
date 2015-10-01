@@ -27,8 +27,8 @@ module.exports = function () {
   });
   
   this.When(/^I enter "([^"]*)" into the username field$/, function (text) {
-    client.waitForVisible("#login-email");
-    client.setValue("#login-email", text);
+    client.waitForVisible("#login-username");
+    client.setValue("#login-username", text);
   });
 
   this.When(/^I enter "([^"]*)" into the password field$/, function (text) {
