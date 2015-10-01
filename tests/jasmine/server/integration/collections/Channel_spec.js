@@ -154,33 +154,16 @@ describe('Channel collection', function() {
     });
   });
 
-  describe('image fetcher', function() {
-    it('should return images from the channel query', function() {
+  describe('image fetcher', function() { 
+    it('should return 64 urls from the channel query', function() {
       let channel = new Channel({
         title: 'My Test Channel',
         query: 'little flower ponies'
       });
       channel = Meteor.call('/channels/new', channel);
 
-      images = Meteor.call('/channels/images', channel, 0, 4);
-      expect(images.length).toEqual(16);
-      for (i = 0; i < images.length; i++) {
-        expect(images[i]).toBe(String);
-        expect(images[i].url).not.toEqual('');
-      }
-
-      // Clean up 
-      channel.remove();
-    });
-    it('should return urls fromt he channel query', function() {
-      let channel = new Channel({
-        title: 'My Test Channel',
-        query: 'little flower ponies'
-      });
-      channel = Meteor.call('/channels/new', channel);
-
-      urls = Meteor.call('/channels/getUrls', channel, 0, 2);
-      expect(urls.length).toEqual(8);
+      urls = Meteor.call('/channels/getUrls', channel);
+      expect(urls.length).toEqual(64);
       for (i = 0; i < urls.length; i++) {
         expect(urls[i]).not.toEqual('');
       }

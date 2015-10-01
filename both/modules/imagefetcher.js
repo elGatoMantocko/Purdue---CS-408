@@ -1,28 +1,3 @@
-/* 
- * Module for grabbing the images from Google
- *
- * @param {Channel} the Channel object that contains the query
- * @param {page} the page you want to return
- * @return {Images} an array of images returned from the search
- */
-
-let getImages = ( channel, page ) => {
-  var GoogleImages = Meteor.npmRequire('google-images');
-  var Future = Meteor.npmRequire('fibers/future');
-  var fut = new Future();
-  var options = new Object();
-  options.callback = function(err, images) {
-    if (err) return console.log(err);
-
-    fut.return(images);
-  };
-  if (page)
-    options.page = page;
-  GoogleImages.search(channel.get('query'), options);
-
-  return fut.wait();
-};
-
 /*
  * Method to return only the urls of the images
  *
@@ -39,7 +14,7 @@ let urlsOnly = (channel, page) => {
   var fut = new Future();
   var options = new Object();
   options.callback = function(err, images) {
-     if (err) return console.log(err);
+    if (err) return console.log(err);
     var urls = images.map(function(image) { return image.url; });
  
     fut.return(urls);
@@ -52,4 +27,3 @@ let urlsOnly = (channel, page) => {
 };
 
 Modules.both.getUrls = urlsOnly;
-Modules.both.getImages = getImages;
