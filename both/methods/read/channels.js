@@ -17,7 +17,7 @@ Meteor.methods({
     
     if (channel.validate()) {
       images = [];
-      for (var i = start_page; i = num_pages; i++) {
+      for (var i = start_page; i = num_pages + start_page; i++) {
         images = images.concat(Modules.both.getImages(channel, i));
       }
       return images;
@@ -42,14 +42,10 @@ Meteor.methods({
     // Check if the user is logged in? Not sure this is necessary
     // if(!Meteor.user()) throw new Meteor.Error('logged-out','You must be logged in to create a channel.');
     
-   if (channel.validate()) {
-      images = [];
-      for (var i = start_page; i < num_pages; i++) {
-        images = images.concat(Modules.both.getUrls(channel, i));
-      }
-      return images;
-    } else {
-      channel.throwValidationsException();
+    images = [];
+    for (var i = start_page; i < num_pages + start_page; i++) {
+      images = images.concat(Modules.both.getUrls(channel, i));
     }
+    return images;
   }
 });
