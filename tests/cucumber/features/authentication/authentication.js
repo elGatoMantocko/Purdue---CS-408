@@ -20,7 +20,7 @@ module.exports = function () {
   });
 
   this.When(/^"([^"]*)" signs in with password "([^"]*)"$/, function (email, password) {
-    this.AuthenticationHelper.login('test@test.com', 'testpass');
+    this.AuthenticationHelper.login(email, password);
   });
 
   this.Then(/^"([^"]*)" should be signed in$/, function(useremail) {
