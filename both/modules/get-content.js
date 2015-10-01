@@ -2,7 +2,7 @@
  * Module for grabbing the images from Google
  *
  * @param {Channel} the Channel object that contains the query
- * @param {pages} the number of pages you want to return
+ * @param {page} the page you want to return
  * @return {Images} an array of images returned from the search
  */
 
@@ -30,7 +30,7 @@ let setup = ( channel, page ) => {
  * Method to return only the urls of the images
  *
  * @param {Channel} the channel to grab the query from
- * @param {pages} the number of pages you want to return
+ * @param {page} the page you want to return
  * @return {String[]} an array of urls
  */
 let urlsOnly = (channel, page) => {

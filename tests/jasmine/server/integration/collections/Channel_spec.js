@@ -165,6 +165,7 @@ describe('Channel collection', function() {
       images = Meteor.call('/channels/images', channel, 0, 4);
       expect(images.length).toEqual(16);
       for (i = 0; i < images.length; i++) {
+        expect(images[i]).toBe(String);
         expect(images[i].url).not.toEqual('');
       }
 
