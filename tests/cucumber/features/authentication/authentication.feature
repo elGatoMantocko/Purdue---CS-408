@@ -14,3 +14,11 @@ Feature: Authentication
     And I enter "password" into the password field
     And I submit the registration form
     Then "Galaxy" should be signed in
+
+  @dev
+  Scenario: I can log in to my account
+    When I click on the signin link
+    And I enter "Phony" into the username field
+    And I enter "password" into the password field
+    And I submit the login form
+    Then "Galaxy" should be signed in

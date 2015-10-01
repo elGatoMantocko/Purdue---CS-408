@@ -25,6 +25,11 @@ module.exports = function () {
     client.waitForVisible("#signup-link");
     client.click("#signup-link");
   });
+
+  this.When(/^I click on the signin link$/, function () {
+    client.waitForVisible("#login-dropdown-list");
+    client.click("#login-dropdown-list");
+  });
   
   this.When(/^I enter "([^"]*)" into the username field$/, function (text) {
     client.waitForVisible("#login-username");
@@ -40,4 +45,10 @@ module.exports = function () {
     client.waitForVisible("#login-buttons-password");
     client.click("#login-buttons-password");
   });
+
+  this.When(/^I submit the login form$/, function () {
+    client.waitForVisible("#login-buttons-password");
+    client.click("#login-buttons-password");
+  });
+
 };
