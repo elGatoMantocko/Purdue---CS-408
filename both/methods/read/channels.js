@@ -27,7 +27,7 @@ Meteor.methods({
     }
   },
   
-  getUrls: function(channel, pages) {
+  getUrls: function(channel, start_page, num_pages) {
     // Check Arguments
     check(channel, Channel);
     check(start_page, Number);
