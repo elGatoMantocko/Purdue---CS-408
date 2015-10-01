@@ -7,7 +7,6 @@
  */
 let getUrls = (channel, page) => {
   // Grabs the necessary packages
-  var GoogleImages = Meteor.npmRequire('google-images');
   var Future = Meteor.npmRequire('fibers/future');
 
   // We need to make a Future object because the search async call needs to be synchronous
@@ -21,7 +20,7 @@ let getUrls = (channel, page) => {
     },
     page: page
   };
-  GoogleImages.search(channel.get('query'), options);
+  Modules.server.GoogleImageSearcher.search(channel.get('query'), options);
   return fut.wait();
 };
 
