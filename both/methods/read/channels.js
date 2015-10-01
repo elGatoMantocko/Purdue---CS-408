@@ -7,7 +7,7 @@ Meteor.methods({
    * @param {num_pages} the number of pages to grab images
    * @return {Images} an array of image objects
    */
-  '/channels/imgages': function(channel, start_page, num_pages) {
+  '/channels/images': function(channel, start_page, num_pages) {
     // Check Arguments
     check(channel, Channel);
     check(start_page, Number);
