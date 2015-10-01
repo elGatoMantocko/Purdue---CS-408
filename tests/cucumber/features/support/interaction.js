@@ -17,7 +17,7 @@ module.exports = function () {
     client.setValue(field, text);
   });
 
-  this.Then(/^The element "([^"]*)" should have text "([^"]*)"$/, function (selector, text) {
+  this.Then(/^the element "([^"]*)" should have text "([^"]*)"$/, function (selector, text) {
     client.waitForVisible(selector);
     expect(client.getText(selector)).toBe(text);
   });
