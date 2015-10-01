@@ -2,11 +2,11 @@ module.exports = function () {
   this.Before(function () {
 
     this.AuthenticationHelper = {
-      login: function (email, pass) {
+      login: function (username, password) {
         client.url(process.env.ROOT_URL);
-        client.executeAsync(function (useremail, userpass, done) {
-          Meteor.loginWithPassword(useremail, userpass, done);
-        }, email, pass);
+        client.executeAsync(function (username, password, done) {
+          Meteor.loginWithPassword(username, password, done);
+        }, username, password);
       },
 
       logout: function () {

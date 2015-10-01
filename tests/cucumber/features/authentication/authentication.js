@@ -7,6 +7,11 @@ var url = require('url');
 
 module.exports = function () {
 
+  this.Given(/^I am signed in$/, function() {
+    // Login with the fixture user
+    this.AuthenticationHelper.login('Phony', 'password');
+  });
+
   this.Given(/^I am signed out$/, function() {
     this.AuthenticationHelper.logout();
   });
