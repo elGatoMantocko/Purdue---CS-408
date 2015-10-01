@@ -24,4 +24,4 @@ let getUrls = (channel, page) => {
   return fut.wait();
 };
 
-Modules.both.getUrls = getUrls;
+Modules.server.getUrls = getUrls;
