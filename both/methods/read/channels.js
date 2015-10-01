@@ -13,7 +13,7 @@ Meteor.methods({
  
     images = [];
     for (var i = 0; i < 16; i++) {
-      images = images.concat(Modules.both.getUrls(channel, i));
+      images = images.concat(Modules.server.getUrls(channel, i));
     }
     return images;
   }
