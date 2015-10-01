@@ -1,8 +1,8 @@
 Feature: Static Pages
 
-  As a developer
-  I want to know the app is serving properly
-  So that I can sleep at night
+  As a guest user
+  I want to navigate to public pages
+  So that I can see what this site is about
 
   @dev
   Scenario: Visit home page
