@@ -25,15 +25,15 @@ module.exports = function () {
   });
 
   this.When(/^I click on the signup link$/, function() {
-    client.waitForVisible("#login-dropdown-list");
-    client.click("#login-dropdown-list");
+    client.waitForVisible("a.dropdown-toggle");
+    client.click("a.dropdown-toggle");
     client.waitForVisible("#signup-link");
     client.click("#signup-link");
   });
 
   this.When(/^I click on the signin link$/, function () {
-    client.waitForVisible("#login-dropdown-list");
-    client.click("#login-dropdown-list");
+    client.waitForVisible("a.dropdown-toggle");
+    client.click("a.dropdown-toggle");
   });
   
   this.When(/^I enter "([^"]*)" into the username field$/, function (text) {
