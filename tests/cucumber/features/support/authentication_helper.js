@@ -2,13 +2,11 @@ module.exports = function () {
   this.Before(function () {
 
     this.AuthenticationHelper = {
-      login: function () {
-        client.waitForExist('a.dropdown-toggle');
-        client.click('a.dropdown-toggle');
-        client.setValue('input#login-email', 'me@example.com');
-        client.setValue('input#login-password', 'letme1n');
-        client.click('button#login-buttons-password');
-        //client.waitForExist('#login-name-link');
+      login: function (email, pass) {
+        client.url(process.env.ROOT_URL);
+        client.executeAsync(function (useremail, userpass, done) {
+          Meteor.loginWithPassword(useremail, userpass, done);
+        }, email, pass);
       },
 
       logout: function () {
@@ -17,12 +15,8 @@ module.exports = function () {
         });
       },
 
-      createAccount: function (profile) {
-        return server.call('fixtures/createAccount', {
-          email: 'me@example.com',
-          password: 'password',
-          profile: profile
-        });
+      createAccount: function (email, password) {
+        server.call('test/createAccount', email, password);
       },
 
       createAccountAndLogin : function(profile) {

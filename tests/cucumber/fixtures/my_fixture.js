@@ -2,6 +2,13 @@
 
 Meteor.methods({
 
+  'test/createAccount': function(useremail, userpass) {
+    check(useremail, String);
+    check(userpass, String);
+
+    Accounts.createUser({email: useremail, password: userpass});
+  },
+
   'reset_users': function() {
     // Remove all users
     Meteor.users.remove({});
@@ -22,9 +29,11 @@ Meteor.methods({
 
     // If we found a user, remove it
     if (typeof user !== 'undefined') {
-      console.log(user._id)
       Meteor.users.remove({_id: user._id});
+      return { _id: user._id, removed: true };
     }
+
+    return { _id: null, removed: true };
   }
 
 });
