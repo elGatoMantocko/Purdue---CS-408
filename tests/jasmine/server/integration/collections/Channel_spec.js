@@ -162,7 +162,7 @@ describe('Channel collection', function() {
       });
       channel = Meteor.call('/channels/new', channel);
 
-      images = Meteor.call('/channels/', channel, 0, 4);
+      images = Meteor.call('/channels/images', channel, 0, 4);
       expect(images.length).toEqual(16);
       for (i = 0; i < images.length; i++) {
         expect(images[i].url).not.toEqual('');
@@ -178,7 +178,7 @@ describe('Channel collection', function() {
       });
       channel = Meteor.call('/channels/new', channel);
 
-      urls = Meteor.call('getUrls', channel, 0, 2);
+      urls = Meteor.call('/channels/getUrls', channel, 0, 2);
       expect(urls.length).toEqual(8);
       for (i = 0; i < urls.length; i++) {
         expect(urls[i]).not.toEqual('');

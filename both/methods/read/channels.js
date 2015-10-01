@@ -3,9 +3,11 @@ Meteor.methods({
    * Reads a Channel and searches for its images
    *
    * @param {Channel} the Channel object to read
+   * @param {start_page} the starting page number
+   * @param {num_pages} the number of pages to grab images
    * @return {Images} an array of image objects
    */
-  '/channels/': function(channel, start_page, num_pages) {
+  '/channels/imgages': function(channel, start_page, num_pages) {
     // Check Arguments
     check(channel, Channel);
     check(start_page, Number);
@@ -23,8 +25,15 @@ Meteor.methods({
       channel.throwValidationsException();
     }
   },
-  
-  getUrls: function(channel, start_page, num_pages) {
+  /*
+   * Reads a Channel and searches for its images
+   *
+   * @param {Channel} the Channel object to read
+   * @param {start_page} the starting page number
+   * @param {num_pages} the number of pages to grab images
+   * @return {Images} an array of image objects
+   */
+  '/channels/getUrls': function(channel, start_page, num_pages) {
     // Check Arguments
     check(channel, Channel);
     check(start_page, Number);
