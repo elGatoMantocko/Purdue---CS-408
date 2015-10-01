@@ -28,3 +28,8 @@ h2 {
 	font-size: 80px;
 	color: #e0e0e0;
 }
+
+.navbar-nav > li > .input-group {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}

@@ -3,5 +3,6 @@ npm install -g velocity-cli
 cd tests/cucumber
 npm install
 cd ../..
-VELOCITY_CI=1 CUCUMBER=0 JASMINE_BROWSER=PhantomJS SELENIUM_BROWSER=phantomjs velocity test-app --ci 
-VELOCITY_CI=1 JASMINE_SERVER_INTEGRATION=0 JASMINE_BROWSER=PhantomJS SELENIUM_BROWSER=phantomjs velocity test-app --ci
+CUCUMBER=0 JASMINE_BROWSER=PhantomJS velocity test-app --ci 
+JASMINE_SERVER_INTEGRATION=0 SELENIUM_BROWSER=firefox velocity test-app --ci
+cat /home/travis/build/elGatoMantocko/BetterBackground/.meteor/local/log/cucumber.log

@@ -14,4 +14,10 @@ module.exports = function () {
   this.When(/^I navigate to "([^"]*)"$/, function (relativePath) {
     client.url(url.resolve(process.env.ROOT_URL, relativePath));
   });
+
+  this.Then(/^I should see the title "([^"]*)"$/, function (expectedTitle) {
+    client.waitForExist('title');
+    var actual = client.getTitle();
+    expect(actual).toBe(expectedTitle);
+  });
 };
