@@ -12,13 +12,10 @@ Meteor.methods({
     check(num_pages, Number);
     // Check if the user is logged in? Not sure this is necessary
     // if(!Meteor.user()) throw new Meteor.Error('logged-out','You must be logged in to create a channel.');
-    if (!start_page)
-      start_page = 0;
-    console.log("Number of Pages: " + num_pages);
+    
     if (channel.validate()) {
       images = [];
-      for (i = start_page; i < num_pages; i++) {
-        console.log("Page #: " + i);
+      for (var i = start_page; i = num_pages; i++) {
         images = images.concat(Modules.both.getImages(channel, i));
       }
       return images;
@@ -36,11 +33,9 @@ Meteor.methods({
     // Check if the user is logged in? Not sure this is necessary
     // if(!Meteor.user()) throw new Meteor.Error('logged-out','You must be logged in to create a channel.');
     
-    if (!start_page)
-      start_page = 0;
-    if (channel.validate()) {
+   if (channel.validate()) {
       images = [];
-      for (i = start_page; i < num_pages; i++) {
+      for (var i = start_page; i < num_pages; i++) {
         images = images.concat(Modules.both.getUrls(channel, i));
       }
       return images;
