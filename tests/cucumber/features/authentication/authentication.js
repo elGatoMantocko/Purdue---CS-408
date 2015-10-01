@@ -11,22 +11,12 @@ module.exports = function () {
     this.AuthenticationHelper.logout();
   });
 
-  this.Given(/^"([^"]*)" has not registered$/, function (user) {
-    expect(server.call('reset_user', user).removed).toBe(true);
-  });
-
-  this.When(/^I register "([^"]*)" with password "([^"]*)"$/, function (email, password) {
-    this.AuthenticationHelper.createAccount(email, password);
-  });
-
-  this.When(/^"([^"]*)" signs in with password "([^"]*)"$/, function (email, password) {
-    this.AuthenticationHelper.login(email, password);
-  });
-
   this.Then(/^"([^"]*)" should be signed in$/, function(useremail) {
-    client.executeAsync(function(done) {
+    var userId = client.executeAsync(function(done) {
       done(Meteor.userId());
-    }).value.should.be.a('string');
+    });
+
+    expect(userId).not.toBeNull();
   });
 
 };

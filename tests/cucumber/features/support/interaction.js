@@ -22,4 +22,8 @@ module.exports = function () {
     expect(client.getText(selector)).toBe(text);
   });
 
+  this.Then(/^I should see the element "([^"]*)"$/, function (selector) {
+    client.waitForExist(selector);
+    client.waitForVisible(selector);
+  });
 };
