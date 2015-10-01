@@ -6,18 +6,15 @@
  * @return {Images} an array of images returned from the search
  */
 
-let setup = ( channel, page ) => {
+let getImages = ( channel, page ) => {
   var GoogleImages = Meteor.npmRequire('google-images');
   var Future = Meteor.npmRequire('fibers/future');
   var fut = new Future();
   var options = new Object();
   options.callback = function(err, images) {
-     if (err) return console.log(err);
-    var urls = [];
-    for (i = 0; i < images.length; i++) {
-      urls.push(images[i].url);
-    }
-    fut.return(urls);
+    if (err) return console.log(err);
+
+    fut.return(images);
   };
   if (page)
     options.page = page;
@@ -43,10 +40,8 @@ let urlsOnly = (channel, page) => {
   var options = new Object();
   options.callback = function(err, images) {
      if (err) return console.log(err);
-    var urls = [];
-    for (i = 0; i < images.length; i++) {
-      urls.push(images[i].url);
-    }
+    var urls = images.map(function(image) { return image.url; });
+ 
     fut.return(urls);
   };
   if (page)
@@ -57,4 +52,4 @@ let urlsOnly = (channel, page) => {
 };
 
 Modules.both.getUrls = urlsOnly;
-Modules.both.getImages = setup;
+Modules.both.getImages = getImages;
