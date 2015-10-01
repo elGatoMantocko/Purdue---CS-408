@@ -8,7 +8,12 @@ Feature: Channels
     Given I am signed out
 
   @dev
-  Scenario: There are no channels in the collection
-    Given The "Channels" collection is empty
+  Scenario: There are currently no channels in the collection
     When I navigate to "/"
     Then I should see "0" channels 
+
+  @dev
+  Scenario: While logged out, navigate to new channel page 
+    Given I am on the home page
+    When I click on the new channels button
+    Then the new channel header should have text "You must log in first"
