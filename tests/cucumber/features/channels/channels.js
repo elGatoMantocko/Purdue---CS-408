@@ -7,10 +7,6 @@ var url = require('url');
 
 module.exports = function () {
 
-  this.Given(/^The "([^"]*)" collection is empty$/, function(collection) {
-    server.call('reset');
-  });
-
   this.Then(/^I should see "([^"]*)" channels$/, function (expectedCount) {
     expectedCount = parseInt(expectedCount);
 
@@ -20,6 +16,16 @@ module.exports = function () {
 
     var numberOfChannelsOnPage = client.elements('.channel').value.length;
     expect(numberOfChannelsOnPage).toEqual(expectedCount);
+  });
+
+  this.When(/^I click on the new channels button$/, function () {
+    client.waitForVisible("#newchannel-btn");
+    client.click("#newchannel-btn");
+  });
+
+this.Then(/^the new channel header should have text "([^"]*)"$/, function (text) {
+    client.waitForVisible("#newchannel-header");
+    expect(client.getText("#newchannel-header")).toBe(text);
   });
 
 };
