@@ -19,7 +19,7 @@ module.exports = function () {
     expect(userId).not.toBeNull();
   });
 
-  this.When(/^I click on the signin link$/, function() {
+  this.When(/^I click on the signup link$/, function() {
     client.waitForVisible("#login-dropdown-list");
     client.click("#login-dropdown-list");
     client.waitForVisible("#signup-link");

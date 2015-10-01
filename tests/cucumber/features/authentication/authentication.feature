@@ -9,7 +9,7 @@ Feature: Authentication
 
   @dev
   Scenario: I can register for an account
-    When I click on the signin link
+    When I click on the signup link
     And I enter "Galaxy" into the username field
     And I enter "password" into the password field
     And I submit the registration form
