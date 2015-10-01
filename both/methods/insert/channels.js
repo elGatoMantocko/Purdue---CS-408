@@ -10,7 +10,7 @@ Meteor.methods({
     check(channel, Channel);
 
     // Check that the user is logged in
-    if(!Meteor.user()) throw new Meteor.Error('logged-out', 
+    if(!Meteor.user()) throw new Meteor.Error('unauthorized', 
                                              'You must be logged in to create a channel.');
 
     // Validate the Channel
