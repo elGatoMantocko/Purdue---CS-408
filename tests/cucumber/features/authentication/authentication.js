@@ -16,7 +16,7 @@ module.exports = function () {
   });
 
   this.Given(/^"([^"]*)" has not registered$/, function (user) {
-    server.call('reset_users');
+    server.call('reset_user', user);
   });
 
   this.When(/^I enter my authentication information$/, function() {
