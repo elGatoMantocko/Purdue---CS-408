@@ -12,9 +12,3 @@ Feature: Channels
     Given The "Channels" collection is empty
     When I navigate to "/"
     Then I should see "0" channels 
-
-  @dev
-  Scenario: While logged out, navigate to new channel page 
-    Given I am on the home page
-    When I click on "#newchannel-btn"
-    Then the element "#newchannel-header" should have text "You must log in first"
