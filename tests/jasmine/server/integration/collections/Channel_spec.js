@@ -8,8 +8,12 @@ describe('Channel collection', function() {
       _id: '12345',
       username: 'Fakey'
     };
-    this.userSpy = spyOn(Meteor, 'user').and.returnValue(this.fakeUser);
     this.userIdSpy = spyOn(Meteor, 'userId').and.returnValue(this.fakeUser._id);
+  });
+
+  afterEach(function() {
+    // Remove any channels we've created
+    Channel.remove({});
   });
 
   it('can correctly save a document', function() {
@@ -18,45 +22,10 @@ describe('Channel collection', function() {
       query: 'save'
     });
 
-    channel = Meteor.call('/channels/new', channel);
+    channel.save();
 
     // We should be able to find that document
     expect(Channel.find({title: 'Save Test'}).count()).toEqual(1);
-
-    // Clean up
-    channel.remove();
-  });
-
-  it('throws if we are NOT logged in', function() {
-    // Call through to the original Meteor.user() implementation
-    //   This will return 'null' because we're obviously not logged in
-    this.userSpy.and.callThrough();
-    let channel = new Channel({
-      title: 'Logged out',
-      query: 'Should throw'
-    });
-
-    try {
-      Meteor.call('/channels/new', channel);
-      fail('method should throw if we are not logged in');
-    } catch(e) {
-      // Test succeeded
-    }
-  });
-
-  it('throws validation exception when given bad data', function() {
-    let channel = new Channel({
-      title: '',
-      query: ''
-    });
-
-    Meteor.call('/channels/new', channel, function(err) {
-      channel.catchValidationException(err);
-      let errors = channel.getValidationErrors();
-      expect(channel.hasValidationErrors()).toBe(true);
-      expect(errors.title).not.toBeNull();
-      expect(errors.query).not.toBeNull();
-    });
   });
 
   describe('title field', function() {
@@ -131,11 +100,8 @@ describe('Channel collection', function() {
         query: 'little flower ponies'
       });
       expect(channel.validate()).toBe(true);
-      channel = Meteor.call('/channels/new', channel);
+      channel.save();
       expect(channel.get('creator')).toEqual(this.fakeUser._id);
-
-      // Clean up
-      channel.remove();
     });
 
     it('can not be set again after initial insertion', function() {
@@ -143,14 +109,34 @@ describe('Channel collection', function() {
         title: 'My Test Channel',
         query: 'little flower ponies'
       });
-      channel = Meteor.call('/channels/new', channel);
+      channel.save();
 
       channel.set('creator', 'a different id');
 
       expect(channel.get('creator')).not.toEqual('a different id');
+    });
+  });
 
-      // Clean up
-      channel.remove();
+  describe('#getLatest', function() {
+    beforeEach(function() {
+      spyOn(Channel, 'find').and.callThrough();
+    });
+
+    it('should limit the "limit" parameter', function() {
+      Channel.getLatest(1000);
+      // Check that Channel.find was called with its limit argument less than what we tried above
+      expect(Channel.find.calls.argsFor(0)[1].limit).toBeLessThan(1000);
+    });
+
+    it('should provide a default limit to the query', function() {
+      Channel.getLatest();
+      // Check that the call to Channel.find did have a limit argument
+      expect(Channel.find.calls.argsFor(0)[1].limit).not.toBeUndefined();
+    });
+
+    it('should sort the results by creation date in descending order', function() {
+      Channel.getLatest();
+      expect(Channel.find.calls.argsFor(0)[1].sort).toEqual({createdAt: -1});
     });
   });
 

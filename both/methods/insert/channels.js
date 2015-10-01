@@ -2,7 +2,7 @@ Meteor.methods({
   /*
    * Inserts a Channel into the database
    *
-   * @param {Channel} the Channel object to insert (Astronomy class)
+   * @param {Channel} channel Channel object to insert (Astronomy class)
    * @return {Channel} the saved Channel
    */
   '/channels/new': function(channel) {
@@ -10,7 +10,7 @@ Meteor.methods({
     check(channel, Channel);
 
     // Check that the user is logged in
-    if(!Meteor.user()) throw new Meteor.Error('logged-out', 
+    if(!Meteor.user()) throw new Meteor.Error('unauthorized', 
                                              'You must be logged in to create a channel.');
 
     // Validate the Channel
