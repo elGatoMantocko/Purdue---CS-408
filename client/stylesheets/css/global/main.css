@@ -4,6 +4,10 @@ body {
 }
 
 .navbar-nav > li > .input-group {
-    padding-top: 8px;
-    padding-bottom: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #E4E4E4;
 }
