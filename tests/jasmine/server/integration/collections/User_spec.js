@@ -29,6 +29,10 @@ describe('User class', function() {
     Channel.remove({});
   });
 
+  it('can retrieve me', function() {
+    expect(User.me().get('_id')).toBe(this.user._id);
+  });
+
   it('can subscribe to channels', function() {
     // Create a new channel and subscribe to it
     let channel = new Channel({

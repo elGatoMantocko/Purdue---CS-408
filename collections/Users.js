@@ -113,3 +113,5 @@ User = Astronomy.createClass({
     }
   }
 });
+
+User.me = () => User.findOne({_id: Meteor.userId()});
