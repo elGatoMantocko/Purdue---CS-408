@@ -34,6 +34,8 @@ themeteorchef:jquery-validation
 fourseven:scss
 meteorhacks:ssr
 underscore
+meteorhacks:npm
+npm-container
 jagi:astronomy@1.0.0-rc.5
 jagi:astronomy-validators@1.0.0-rc.3
 jagi:astronomy-timestamp-behavior

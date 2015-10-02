@@ -139,5 +139,4 @@ describe('Channel collection', function() {
       expect(Channel.find.calls.argsFor(0)[1].sort).toEqual({createdAt: -1});
     });
   });
-
 });
