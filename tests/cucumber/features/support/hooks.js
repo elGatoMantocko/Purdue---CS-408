@@ -4,7 +4,8 @@
 
     module.exports = function () {
         this.Before(function () {
-          server.call('addUser', {
+          server.call('/fixtures/reset');
+          server.call('/fixtures/addUser', {
             username: 'Phony'
           });
         });

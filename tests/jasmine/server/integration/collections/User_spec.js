@@ -29,6 +29,10 @@ describe('User class', function() {
     Channel.remove({});
   });
 
+  it('can retrieve me', function() {
+    expect(User.me().get('_id')).toBe(this.user._id);
+  });
+
   it('can subscribe to channels', function() {
     // Create a new channel and subscribe to it
     let channel = new Channel({
@@ -37,7 +41,7 @@ describe('User class', function() {
     });
     channel.save();
     this.user.subscribeTo(channel);
-    expect(this.user.getSubscriptions()).toContain(channel);
+    expect(this.user.getSubscriptions().fetch()).toContain(channel);
   });
 
   it('can check whether it is subscribed to a channel', function() {
@@ -75,9 +79,9 @@ describe('User class', function() {
     });
     channel.save();
     this.user.subscribeTo(channel);
-    expect(this.user.getSubscriptions()).toContain(channel);
+    expect(this.user.getSubscriptions().fetch()).toContain(channel);
     this.user.unsubscribeFrom(channel);
-    expect(this.user.getSubscriptions()).not.toContain(channel);
+    expect(this.user.getSubscriptions().fetch()).not.toContain(channel);
   });
 
   describe('User Profile', function() {
