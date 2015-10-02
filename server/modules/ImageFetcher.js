@@ -15,12 +15,11 @@ let getUrls = (channel, page) => {
     callback(err, images) {
       if (err) return console.log(err);
       var urls = images.map(function(image) { return image.url; });
-   
       fut.return(urls);
     },
     page: page
   };
-  Modules.server.GoogleImageSearcher.search(channel.get('query'), options);
+  var t = Modules.server.GoogleImageSearcher.search(channel.get('query'), options);
   return fut.wait();
 };
 
