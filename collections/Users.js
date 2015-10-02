@@ -52,13 +52,13 @@ User = Astronomy.createClass({
     /*
      * Returns an array of this user's subscribed channels
      * 
-     * @return{Array.<Channel>}
+     * @return{Mongo.Cursor}
      */
     getSubscriptions() {
       let subscriptions = this.get('profile.channelSubscriptions');
       return Channel.find({
         _id: {$in: subscriptions}
-      }).fetch();
+      });
     },
 
     /*
@@ -69,7 +69,7 @@ User = Astronomy.createClass({
      */
     isSubscribedTo(channel) {
       // Test whether any of my subscribed channels' IDs are equal to the passed channel's ID
-      return this.getSubscriptions().some((testChannel) => {
+      return this.getSubscriptions().fetch().some((testChannel) => {
         return channel.get('_id') === testChannel.get('_id');
       });
     },
