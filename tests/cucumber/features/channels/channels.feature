@@ -17,3 +17,9 @@ Feature: Channels
     Given I am on the home page
     When I click on the new channels button
     Then the new channel header should have text "You must log in first"
+
+  @dev
+  Scenario: While logged in, navigate to new channel page
+    Given I am signed in
+    When I click on the new channels button
+    Then the new channel header should have text "Create a new channel"
