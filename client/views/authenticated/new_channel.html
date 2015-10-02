@@ -1,20 +1,16 @@
 <template name="newchannel">
   {{#if currentUser}}
     <h2 id="newchannel-header">Create a new channel</h2>
-    <form class="form-inline" role="form">
+    <form id="add-channel" class="form-inline" role="form">
       <div class="form-group">
-        {{#with channel}}
-          <input type="text" id="title" class="form-group" placeholder="Title" aria-describedby="basic-addon1">
-          {{#if hasValidationError "title"}}
-            <div class="error">{{getValidationError "title"}}</div>
-          {{/if}}
-          <input type="text" id="query" class="form-group" placeholder="Query" aria-describedby="basic-addon1">
-          {{#if hasValidationError "query"}}
-            <div class="error">{{getValidationError "query"}}</div>
-          {{/if}}
-        {{/with}}
+        <input type="text" id="title" class="form-control required" name="title" placeholder="Title" aria-describedby="basic-addon1">
       </div>
-      <input type="submit" id="submit" class="form-control" value="Submit">
+      <div class="form-group">
+        <input type="text" id="query" class="form-control required" name="query" placeholder="Query" aria-describedby="basic-addon1">
+      </div>
+      <div class="form-group">
+        <input type="submit" id="submit" class="btn btn-success btn-block" value="Submit">
+      </div>
     </form>
   {{else}}
     <h2 id="newchannel-header">You must log in first</h2>
