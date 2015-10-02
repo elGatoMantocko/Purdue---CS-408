@@ -30,6 +30,7 @@ ecmascript-collections@0.1.6
 ejson@1.0.7
 email@1.0.7
 fastclick@1.0.7
+fixtures@0.0.0
 force-ssl@1.0.6
 fourseven:scss@3.2.0
 geojson-utils@1.0.4
