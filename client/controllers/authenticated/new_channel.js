@@ -11,7 +11,9 @@ Template.newchannel.events({
     e.preventDefault();
 
     var channel = new Channel({title: this.title, query: this.query});
-    Meteor.call('/channels/new', channel);
+    Meteor.call('/channels/new', channel, function(err, res) {
+      FlowRouter.go('/channels/' + res._id);
+    });
   }
 
 });
