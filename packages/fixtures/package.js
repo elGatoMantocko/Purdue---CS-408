@@ -7,5 +7,7 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.2.0.2');
   api.use('ecmascript@0.1.4');
-  api.addFiles('fixtures.js');
+  api.use('digilord:faker@1.0.7');
+  api.use('mongo@1.1.1', 'server');
+  api.addFiles('fixtures.js', 'server');
 });
