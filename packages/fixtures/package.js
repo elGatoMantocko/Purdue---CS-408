@@ -9,5 +9,7 @@ Package.onUse(function(api) {
   api.use('ecmascript@0.1.4');
   api.use('digilord:faker@1.0.7');
   api.use('mongo@1.1.1', 'server');
+  api.use('browser-policy@1.0.5');
   api.addFiles('fixtures.js', 'server');
+  api.addFiles('browser_policy.js', 'server');
 });
