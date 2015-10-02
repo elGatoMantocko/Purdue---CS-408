@@ -1,17 +1,24 @@
+Template.newchannel.onCreated(function() {
+  this.channel = new Channel();
+});
+
 Template.newchannel.events({
 
   'change input': function(e, tmpl) {
     e.preventDefault();
 
     var field = e.currentTarget;
-    this[field.id] = field.value;
+    this.channel.set(field.id, field.value);
+    console.log(this.channel);
   },
 
   'submit form': function(e, tmpl) {
     e.preventDefault();
 
-    var channel = new Channel({title: this.title, query: this.query});
-    Meteor.call('/channels/new', channel, function(err, res) {
+    console.log(this.channel);
+
+    Meteor.call('/channels/new', this.channel, function(err, res) {
+      if (err) this.channel.catchValidationException();
       FlowRouter.go('/channels/' + res._id);
     });
   }
