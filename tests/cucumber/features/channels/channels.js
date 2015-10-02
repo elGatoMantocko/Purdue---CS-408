@@ -23,7 +23,27 @@ module.exports = function () {
     client.click("#newchannel-btn");
   });
 
-this.Then(/^the new channel header should have text "([^"]*)"$/, function (text) {
+  this.When(/^I enter "([^"]*)" into the title field$/, function (text) {
+    client.waitForVisible("input#title");
+    client.setValue("input#title", text);
+  });
+
+  this.When(/^I enter "([^"]*)" into the query field$/, function (text) {
+    client.waitForVisible("input#query");
+    client.setValue("input#query", text);
+  });
+
+  this.When(/^I submit the new channel form$/, function () {
+    client.waitForVisible("input#submit");
+    client.click("input#submit");
+  });
+
+  this.Then(/^I should be on the new channel$/, function () {
+    client.waitForVisible("#channel-header");
+    expect(client.getText("#channel-header")).toBe("New channel");
+  });
+
+  this.Then(/^the new channel header should have text "([^"]*)"$/, function (text) {
     client.waitForVisible("#newchannel-header");
     expect(client.getText("#newchannel-header")).toBe(text);
   });

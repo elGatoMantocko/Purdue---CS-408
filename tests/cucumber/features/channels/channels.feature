@@ -23,3 +23,12 @@ Feature: Channels
     Given I am signed in
     When I click on the new channels button
     Then the new channel header should have text "Create a new channel"
+
+  @dev
+  Scenario: Create new channel
+    Given I am signed in
+    When I click on the new channels button
+    And I enter "Galaxy" into the title field
+    And I enter "pony+galaxy" into the query field
+    And I submit the new channel form
+    Then I should be on the new channel
