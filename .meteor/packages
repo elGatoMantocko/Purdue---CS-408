@@ -29,7 +29,6 @@ accounts-base
 accounts-password
 audit-argument-checks
 themeteorchef:bert
-browser-policy
 themeteorchef:jquery-validation
 fourseven:scss
 meteorhacks:ssr
