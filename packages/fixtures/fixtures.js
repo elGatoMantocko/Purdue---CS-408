@@ -12,11 +12,4 @@ Meteor.methods({
       password: opts.password ? opts.password : "password"
     });
   },
-
-  '/fixtures/addChannel': function(opts) {
-    check(opts, Object);
-    var channel = new Channel(opts);
-    channel.save();
-  }
-
 });
