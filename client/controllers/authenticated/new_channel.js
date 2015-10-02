@@ -11,10 +11,7 @@ Template.newchannel.events({
     e.preventDefault();
 
     var channel = new Channel({title: this.title, query: this.query});
-
-    if (channel.validate()) {
-      channel.save();
-    }
+    Meteor.call('/channels/new', channel);
   }
 
 });
