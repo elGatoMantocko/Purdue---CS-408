@@ -38,4 +38,25 @@ describe('image fetcher', function() {
     // Clean up 
     channel.remove();
   });
+
+  it('Should return an error', function() {
+    let channel = new Channel({
+      title: 'My Test Channel',
+      query: 'little flower ponies'
+    });
+    channel.save();
+    spyOn(Modules.server.GoogleImageSearcher, 'search').and.callFake(function(query, options) {
+      options.callback('Error: This is a fake Error', [ 
+        { url: 'www.test.com' },
+        { url: 'www.test.com' },
+        { url: 'www.test.com' },
+        { url: 'www.test.com' }
+      ]);
+    });
+    urls = Meteor.call('/channels/getUrls', channel);
+    expect(urls[0]).toEqual('Error: This is a fake Error'); 
+    // Clean up 
+    channel.remove();
+
+  });
 });

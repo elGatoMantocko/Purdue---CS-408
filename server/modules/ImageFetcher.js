@@ -13,7 +13,10 @@ let getUrls = (channel, page) => {
   var fut = new Future();
   var options = {
     callback(err, images) {
-      if (err) return console.log(err);
+      if (err) {
+        fut.return( err );
+        return console.log(err);
+      }
       var urls = images.map(function(image) { return image.url; });
       fut.return(urls);
     },
