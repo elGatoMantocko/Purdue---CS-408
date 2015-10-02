@@ -22,12 +22,12 @@ describe('image fetcher', function() {
     });
     channel.save();
     spyOn(Modules.server.GoogleImageSearcher, 'search').and.callFake(function(query, options) {
-      options.callback(null, {
+      options.callback(null, [ 
         { url: 'www.test.com' },
         { url: 'www.test.com' },
         { url: 'www.test.com' },
         { url: 'www.test.com' }
-      });
+      ]);
     });
     urls = Meteor.call('/channels/getUrls', channel);
     expect(urls.length).toEqual(64);
