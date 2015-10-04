@@ -1,7 +1,10 @@
 <template name="home">
-  <!-- for each channel -->
-  <!--<div class="channel panel pull-left">-->
-    <!--<p>test channel 1</p>-->
-  <!--</div>-->
-  <!-- /for -->
+  <div class="list-group">
+    {{#each channels}}
+      <a href="#" class="list-group-item">
+        <h4 class="list-group-item-heading">{{title}}</h4>
+        <p class="list-group-item-text">{{query}}</p>
+      </a>
+    {{/each}}
+  </div>
 </template>
