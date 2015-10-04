@@ -48,9 +48,14 @@ module.exports = function () {
     expect(client.getText("#newchannel-header")).toBe(text);
   });
 
-  this.Then(/^"([^"]*)" should have text "([^"]*)"$/, function (selector, text) {
-    client.waitForVisible(selector);
-    expect(client.getText(selector)).toBe(text);
+  this.Then(/^I should see a title required validation error$/, function () {
+    client.waitForVisible("#title-error");
+    expect(client.getText("#title-error")).toBe("The value of the \"title\" field is required");
+  });
+
+  this.Then(/^I should see a query required validation error$/, function () {
+    client.waitForVisible("#query-error");
+    expect(client.getText("#query-error")).toBe("The value of the \"query\" field is required");
   });
 
 };

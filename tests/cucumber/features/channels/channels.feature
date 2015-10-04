@@ -34,17 +34,17 @@ Feature: Channels
     Then I should be on the new channel
 
   @dev
-  Scenario: Try to create channel with invalid title
+  Scenario: Try to create channel without a title
     Given I am signed in
     When I click on the new channels button
     And I enter "pony+galaxy" into the query field
     And I submit the new channel form
-    Then "#title-error" should have text "Title is not valid!"
+    Then I should see a title required validation error
 
   @dev
-  Scenario: Try to create channel with invalid query
+  Scenario: Try to create channel without a query
     Given I am signed in
     When I click on the new channels button
     And I enter "Galaxy" into the title field
     And I submit the new channel form
-    Then "#query-error" should have text "Query is not valid!"
+    Then I should see a query required validation error
