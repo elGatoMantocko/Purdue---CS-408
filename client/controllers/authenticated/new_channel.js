@@ -8,15 +8,15 @@ Template.newchannel.events({
     e.preventDefault();
 
     var field = e.currentTarget;
-    this.channel.set(field.id, field.value);
+    tmpl.data.channel.set(field.id, field.value);
   },
 
   'submit form': function(e, tmpl) {
     e.preventDefault();
 
-    if (this.channel.validate()) {
-      Meteor.call('/channels/new', this.channel, function(err, res) {
-        if (err) this.channel.catchValidationException();
+    if (tmpl.data.channel.validate()) {
+      Meteor.call('/channels/new', tmpl.data.channel, function(err, res) {
+        if (err) tmpl.data.channel.catchValidationException();
         FlowRouter.go('/channels/' + res._id);
       });
     }
