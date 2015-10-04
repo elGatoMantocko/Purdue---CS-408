@@ -32,3 +32,19 @@ Feature: Channels
     And I enter "pony+galaxy" into the query field
     And I submit the new channel form
     Then I should be on the new channel
+
+  @dev
+  Scenario: Try to create channel with invalid title
+    Given I am signed in
+    When I click on the new channels button
+    And I enter "pony+galaxy" into the query field
+    And I submit the new channel form
+    Then "#title-error" should have text "Title is not valid!"
+
+  @dev
+  Scenario: Try to create channel with invalid query
+    Given I am signed in
+    When I click on the new channels button
+    And I enter "Galaxy" into the title field
+    And I submit the new channel form
+    Then "#query-error" should have text "Query is not valid!"

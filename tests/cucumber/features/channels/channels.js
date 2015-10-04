@@ -48,4 +48,9 @@ module.exports = function () {
     expect(client.getText("#newchannel-header")).toBe(text);
   });
 
+  this.Then(/^"([^"]*)" should have text "([^"]*)"$/, function (selector, text) {
+    client.waitForVisible(selector);
+    expect(client.getText(selector)).toBe(text);
+  });
+
 };
