@@ -1,6 +1,7 @@
 <template name="newchannel">
   {{#if currentUser}}
     <h2 id="newchannel-header">Create a new channel</h2>
+    {{#with channel}}
     <form id="add-channel" class="form-inline" role="form">
       <div class="form-group">
         <input type="text" id="title" class="form-control required" name="title" placeholder="Title" aria-describedby="basic-addon1">
@@ -12,6 +13,7 @@
         <input type="submit" id="submit" class="btn btn-success btn-block" value="Submit">
       </div>
     </form>
+    {{/with}}
   {{else}}
     <h2 id="newchannel-header">You must log in first</h2>
   {{/if}}
