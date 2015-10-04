@@ -6,9 +6,8 @@
       <div class="form-group">
         <input type="text" id="title" class="form-control required" name="title" placeholder="Title" aria-describedby="basic-addon1">
         {{#if hasValidationError 'title'}}
-          <div class="alert alert-danger">
+          <div id="title-error" class="alert alert-danger">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span class="sr-only">Error:</span>
             Title is not valid!
           </div>
         {{/if}}
@@ -16,9 +15,8 @@
       <div class="form-group">
         <input type="text" id="query" class="form-control required" name="query" placeholder="Query" aria-describedby="basic-addon1">
         {{#if hasValidationError 'query'}}
-          <div class="alert alert-danger">
+          <div id="query-error" class="alert alert-danger">
             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span class="sr-only">Error:</span>
             Query is not valid!
           </div>
         {{/if}}
