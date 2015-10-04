@@ -5,25 +5,25 @@
     <form id="add-channel" class="form-inline" role="form">
       <div class="form-group">
         <input type="text" id="title" class="form-control required" name="title" placeholder="Title" aria-describedby="basic-addon1">
-        {{#if hasValidationError 'title'}}
-          <div id="title-error" class="alert alert-danger">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            Title is not valid!
-          </div>
-        {{/if}}
       </div>
       <div class="form-group">
         <input type="text" id="query" class="form-control required" name="query" placeholder="Query" aria-describedby="basic-addon1">
-        {{#if hasValidationError 'query'}}
-          <div id="query-error" class="alert alert-danger">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            Query is not valid!
-          </div>
-        {{/if}}
       </div>
       <div class="form-group">
         <input type="submit" id="submit" class="btn btn-success btn-block" value="Submit">
       </div>
+      {{#if hasValidationError 'title'}}
+        <div id="title-error" class="alert alert-danger">
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          {{getValidationError 'title'}}
+        </div>
+      {{/if}}
+      {{#if hasValidationError 'query'}}
+        <div id="query-error" class="alert alert-danger">
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          {{getValidationError 'query'}}
+        </div>
+      {{/if}}
     </form>
     {{/with}}
   {{else}}
