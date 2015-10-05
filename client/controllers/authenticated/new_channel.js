@@ -17,7 +17,7 @@ Template.newchannel.events({
     if (tmpl.data.channel.validate()) {
       Meteor.call('/channels/new', tmpl.data.channel, function(err, res) {
         if (err) tmpl.data.channel.catchValidationException();
-        FlowRouter.go('/channels/' + res._id);
+        FlowRouter.go(`/channels/${res._id}`);
       });
     }
   }
