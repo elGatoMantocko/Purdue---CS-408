@@ -10,9 +10,3 @@ Template.home.helpers({
     return Channel.getLatest().fetch();
   }
 });
-
-Template.home.events({
-  'click .list-group-item': function(e, tmpl) {
-    e.preventDefault();
-  }
-});
