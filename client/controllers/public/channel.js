@@ -4,6 +4,6 @@ Template.channel.onCreated(function() {
 
 Template.channel.helpers({
   channel: function() {
-    return Channel.getChannel(FlowRouter.getParam('id')).fetch()[0];
+    return Channel.findOne(FlowRouter.getParam('id'));
   }
 });
