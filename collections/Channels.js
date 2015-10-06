@@ -62,3 +62,13 @@ Channel.getLatest = function(limit) {
     limit: limit
   });
 }
+
+/*
+ * Find a single channel by id
+ *
+ * @param {string} id The channel id to fetch
+ * @return {Mongo.Cursor} the resulting Mongo cursor from find()
+ */
+Channel.getChannel = function(id) {
+  return Channel.find({"_id": id});
+}

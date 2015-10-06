@@ -16,3 +16,11 @@ Meteor.publish('myChannels', function() {
   let user = User.me();
   return user.getSubscriptions();
 });
+
+/*
+ * Publish access to a single channel
+ */
+Meteor.publish('oneChannel', function(id) {
+  check(id, String);
+  return Channel.getChannel(id);
+});
