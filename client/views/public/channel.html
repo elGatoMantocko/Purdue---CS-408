@@ -1,3 +1,17 @@
 <template name="channel">
   <h2 id="channel-header">New channel</h2>
+  {{#if Template.subscriptionsReady}}
+    {{#with channel}}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 id="channel-title" class="panel-title">{{title}}</h3>
+      </div>
+      <div id="channel-query" class="panel-body">
+        {{query}}
+      </div>
+    </div>
+    {{/with}}
+  {{else}}
+    <p>Loading...</p>
+  {{/if}}
 </template>
