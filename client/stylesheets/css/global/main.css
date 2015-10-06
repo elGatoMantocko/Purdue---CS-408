@@ -1,35 +1,13 @@
 /* CSS declarations go here */
-html {
-	background: url("/gradient_background.jpg") no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-}
-
-body, html {
-	background-color: transparent;
-}
-
 body {
   padding-top: 50px;
 }
 
-h1 {
-	text-align: center;
-	font-family: 'intro_rust_gbase_2_line';
-	font-size: 100px;
-	color: #efefef;
-}
-
-h2 {
-	text-align: center;
-	font-family: 'intro_rust_gbase_2_line';
-	font-size: 80px;
-	color: #e0e0e0;
-}
-
 .navbar-nav > li > .input-group {
-    padding-top: 8px;
-    padding-bottom: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+  color: #E4E4E4;
 }
