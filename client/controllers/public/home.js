@@ -1,5 +1,5 @@
 Template.home.onCreated(function() {
-  Meteor.subscribe('latestChannels');
+  this.subscribe('latestChannels');
 });
 
 Template.home.helpers({
