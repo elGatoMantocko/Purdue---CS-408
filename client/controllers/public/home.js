@@ -31,7 +31,5 @@ Template.subscribeButton.events({
 
     var user = User.findOne(Meteor.userId());
     user.subscribeTo(this);
-    if (user.validate())
-      user.save();
   }
 });
