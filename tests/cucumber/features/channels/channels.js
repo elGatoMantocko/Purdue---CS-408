@@ -38,11 +38,6 @@ module.exports = function () {
     client.click("input#submit");
   });
 
-  this.Then(/^I should be on the new channel$/, function () {
-    client.waitForVisible("#channel-header");
-    expect(client.getText("#channel-header")).toBe("New channel");
-  });
-
   this.Then(/^the new channel header should have text "([^"]*)"$/, function (text) {
     client.waitForVisible("#newchannel-header");
     expect(client.getText("#newchannel-header")).toBe(text);
@@ -56,6 +51,11 @@ module.exports = function () {
   this.Then(/^I should see a query required validation error$/, function () {
     client.waitForVisible("#query-error");
     expect(client.getText("#query-error")).toBe("The value of the \"query\" field is required");
+  });
+
+  this.Then(/^channel "([^"]*)" should display "([^"]*)"$/, function (element, text) {
+    client.waitForVisible('#channel-' + element);
+    expect(client.getText('#channel-' + element)).toBe(text);
   });
 
 };
