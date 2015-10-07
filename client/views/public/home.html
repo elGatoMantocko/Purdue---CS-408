@@ -28,5 +28,9 @@
 </template>
 
 <template name="subscribeButton">
-  <button id="subscribe" type="submit" class="btn btn-primary">Subscribe</button>
+  {{#if subscribed}}
+    <button id="unsubscribe" type="submit" class="btn btn-primary">Unsubscribe</button>
+  {{else}}
+    <button id="subscribe" type="submit" class="btn btn-primary">Subscribe</button>
+  {{/if}}
 </template>
