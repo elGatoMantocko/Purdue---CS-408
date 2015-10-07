@@ -13,7 +13,7 @@ Meteor.publish('myChannels', function() {
   if(!this.userId) {
     this.error(new Meteor.Error('unauthorized', 'You must be logged in to get your subscriptions.'));
   }
-  let user = User.me();
+  let user = User.findOne(this.userId);
   return user.getSubscriptions();
 });
 
