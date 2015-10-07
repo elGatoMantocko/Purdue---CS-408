@@ -2,7 +2,9 @@ Template.home.onCreated(function() {
   var self = this;
   self.autorun(function() {
     Meteor.subscribe('latestChannels');
-    Meteor.subscribe('myChannels');
+    if (Meteor.userId()) {
+      Meteor.subscribe('myChannels');
+    }
   });
   
   //TODO: put user data here into this and remove it from the helpers
@@ -36,6 +38,8 @@ Template.home.helpers({
 
 Template.subscribeButton.helpers({
   subscribed: function() {
+    if (!Meteor.userId()) return false;
+
     var user = User.findOne(Meteor.userId());
     return user.isSubscribedTo(this);
   }
