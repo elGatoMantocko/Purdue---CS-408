@@ -11,16 +11,22 @@ module.exports = function () {
     expectedCount = parseInt(expectedCount);
 
     if(expectedCount > 0) {
-      client.waitForVisible('.channel');
+      client.waitForVisible('.list-group');
     }
 
-    var numberOfChannelsOnPage = client.elements('.channel').value.length;
+    var numberOfChannelsOnPage = client.elements('.list-group-item').value.length;
     expect(numberOfChannelsOnPage).toEqual(expectedCount);
   });
 
   this.When(/^I click on the new channels button$/, function () {
     client.waitForVisible("#newchannel-btn");
     client.click("#newchannel-btn");
+  });
+
+  this.When(/^the database has "([^"]*)" channels$/, function (count) {
+    client.executeAsync(function(count, done) {
+      done(Meteor.call('/fixtures/addChannels', count));
+    }, parseInt(count));
   });
 
   this.When(/^I enter "([^"]*)" into the title field$/, function (text) {
