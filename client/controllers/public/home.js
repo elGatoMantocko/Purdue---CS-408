@@ -4,6 +4,8 @@ Template.home.onCreated(function() {
     Meteor.subscribe('latestChannels');
     Meteor.subscribe('myChannels');
   });
+  
+  //TODO: put user data here into this and remove it from the helpers
 });
 
 Template.home.helpers({
@@ -16,12 +18,26 @@ Template.home.helpers({
   channels: function() {
     var user = User.findOne(Meteor.userId());
     if (user) {
-      console.log(user.getSubscriptions().fetch());
-      return _.difference(Channel.getLatest().fetch(), user.getSubscriptions().fetch());
+      var latestChannels = Channel.getLatest().fetch();
+      var myChannels = user.getSubscriptions().fetch();
+
+      // return 'latestChannels' it is not in 'myChannels'
+      return _.reject(latestChannels, function(latestchannel) {
+        return _.find(myChannels, function(mychannel) {
+          return _.isEqual(mychannel, latestchannel);
+        });
+      });
     }
     else {
       return Channel.getLatest().fetch();
     }
+  }
+});
+
+Template.subscribeButton.helpers({
+  subscribed: function() {
+    var user = User.findOne(Meteor.userId());
+    return user.isSubscribedTo(this);
   }
 });
 
@@ -31,5 +47,11 @@ Template.subscribeButton.events({
 
     var user = User.findOne(Meteor.userId());
     user.subscribeTo(this);
+  },
+  'click button#unsubscribe': function(e, tmpl) {
+    e.preventDefault();
+
+    var user = User.findOne(Meteor.userId());
+    user.unsubscribeFrom(this);
   }
 });
