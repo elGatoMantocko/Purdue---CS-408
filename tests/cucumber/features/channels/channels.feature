@@ -39,7 +39,8 @@ Feature: Channels
     And I enter "Galaxy" into the title field
     And I enter "pony+galaxy" into the query field
     And I submit the new channel form
-    Then I should be on the new channel
+    Then channel "title" should display "Galaxy"
+    And channel "query" should display "pony+galaxy"
 
   @dev
   Scenario: Try to create channel without a title
