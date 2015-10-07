@@ -22,5 +22,5 @@ Meteor.publish('myChannels', function() {
  */
 Meteor.publish('oneChannel', function(id) {
   check(id, String);
-  return Channel.getChannel(id);
+  return Channel.find(id);
 });

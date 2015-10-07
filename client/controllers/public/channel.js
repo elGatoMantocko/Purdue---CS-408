@@ -1,9 +1,14 @@
 Template.channel.onCreated(function() {
-  Meteor.subscribe('oneChannel', FlowRouter.getParam('id'));
+  var self = this;
+  self.autorun(function() {
+    var channelId = FlowRouter.getParam('id');
+    Meteor.subscribe('oneChannel', channelId);
+  });
 });
 
 Template.channel.helpers({
   channel: function() {
-    return Channel.findOne(FlowRouter.getParam('id'));
+    var channelId = FlowRouter.getParam('id');
+    return Channel.find(channelId).fetch()[0];
   }
 });
