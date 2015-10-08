@@ -8,7 +8,7 @@ Meteor.methods({
   '/users/subscribe': function(channel) {
     check(channel, Channel);
 
-    if(!User.me()) {
+    if(!Meteor.user()) {
       throw new Meteor.Error('unauthorized', 'You must be logged in to subscribe to channels.');
     }
 
