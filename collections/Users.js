@@ -106,7 +106,7 @@ User = Astronomy.createClass({
           channelIndex = subscriptions.indexOf(channel.get('_id'));
       if(channelIndex > -1) {
         subscriptions.splice(channelIndex, 1);
-        this.profile.channelSubscriptions = subscriptions;
+        this.set('profile.channelSubscriptions', subscriptions);
         this.save();
       }
       return this;
