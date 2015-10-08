@@ -19,3 +19,12 @@ Feature: Subscribe
     And I am signed in
     When I click on the subscribe button
     Then I should see "1" channels in "#mychannels"
+
+  @dev
+  Scenario: Subscribe to a specific channel
+    Given the database has "4" channels
+    And I am signed in
+    And I create a channel with title "CS408" and query "pony+galaxy"
+    And I am on the home page
+    When I click on "CS408" subscribe button
+    Then the "CS408" channel should be in "#mychannels"

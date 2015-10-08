@@ -13,6 +13,20 @@ module.exports = function () {
     }, parseInt(count));
   });
 
+  this.Given(/^I create a channel with title "([^"]*)" and query "([^"]*)"$/, function (title, query) {
+    client.waitForVisible("#newchannel-btn");
+    client.click("#newchannel-btn");
+
+    client.waitForVisible("input#title");
+    client.setValue("input#title", title);
+
+    client.waitForVisible("input#query");
+    client.setValue("input#query", query);
+
+    client.waitForVisible("input#submit");
+    client.click("input#submit");
+  });
+
   this.When(/^I click on the new channels button$/, function () {
     client.waitForVisible("#newchannel-btn");
     client.click("#newchannel-btn");

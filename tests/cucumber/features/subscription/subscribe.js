@@ -12,6 +12,19 @@ module.exports = function () {
     client.click('button#subscribe');
   });
 
+  this.When(/^I click on "([^"]*)" subscribe button$/, function (title) {
+    client.waitForVisible('#allchannels');
+    var index = client.getText('#allchannels .row h4').indexOf(title) + 1;
+    client.click('#allchannels .row #subscribe:nth-child(' + index + ')')
+  });
+
+  this.Then(/^the "([^"]*)" channel should be in "([^"]*)"$/, function (title, element) {
+    client.waitForVisible(element);
+    var index = client.getText(element + ' .row h4').indexOf(title);
+    expect(index).not.toBe(-1);
+  });
+
+
   this.Then(/^I shouldn't see my channels$/, function () {
     expect(client.elements('#mychannels').value.length).toBe(0);
   });
