@@ -30,7 +30,6 @@ module.exports = function () {
     expect(index).not.toBe(-1);
   });
 
-
   this.Then(/^I shouldn't see my channels$/, function () {
     expect(client.elements('#mychannels').value.length).toBe(0);
   });
