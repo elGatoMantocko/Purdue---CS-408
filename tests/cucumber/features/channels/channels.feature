@@ -13,12 +13,12 @@ Feature: Channels
 
   @dev
   Scenario: I am on the home page with 1 channel
-    When the database has "1" channels
+    Given the database has "1" channels
     Then I should see "1" channels
 
   @dev
   Scenario: I am on the home page with 5 channel
-    When the database has "5" channels
+    Given the database has "5" channels
     Then I should see "5" channels
 
   @dev
