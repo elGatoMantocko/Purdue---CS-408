@@ -6,8 +6,6 @@ Template.home.onCreated(function() {
       Meteor.subscribe('myChannels');
     }
   });
-  
-  //TODO: put user data here into this and remove it from the helpers
 });
 
 Template.home.helpers({
