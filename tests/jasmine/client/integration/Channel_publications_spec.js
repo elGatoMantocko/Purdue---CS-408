@@ -1,49 +1,55 @@
 describe('Channel publications', function() {
 
   var channels = [];
-  var sub;
 
-  afterEach(function() {
-    // Make sure to cancel the subscription after each test
-    if(sub) {
-      sub.stop();
-      sub = undefined;
-    }
-  });
+  beforeEach(function(done){
+    // Navigate to a page that has 0 subscriptions
+    FlowRouter.go('/blank');
 
-  beforeAll(function(done){
-    // Create 10 fake channels
-    Meteor.call('/fixtures/addChannels', 10, function(err, res) {
-      channels = res;
-      // Create a fake user
-      Meteor.call('/fixtures/addUser', {
-        username: 'Phony',
-        password: 'password'
-      }, function(err, res) {
-        done();
+    // Start fresh
+    Meteor.call('/fixtures/reset', function(err, res) {
+      // Create 10 fake channels
+      Meteor.call('/fixtures/addChannels', 10, function(err, res) {
+        channels = res;
+        // Create a fake user
+        Meteor.call('/fixtures/addUser', {
+          username: 'Phony',
+          password: 'password'
+        }, function(err, res) {
+          done();
+        });
       });
     });
   });
 
-  afterAll(function(done) {
+  afterEach(function(done) {
+    // End fresh
     Meteor.call('/fixtures/reset', function(err, res) {
       done();
     });
   });
 
   it('publishes the latest channels', function(done) {
-    sub = Meteor.subscribe('latestChannels', {
+    var sub = Meteor.subscribe('latestChannels', {
       onReady() {
         expect(Channel.getLatest().count()).toBe(10);
+        sub.stop();
         done();
+      },
+      onStop(err) {
+        if(err) {
+          fail(err);
+          done();
+        }
       }
     });
   });
 
   it('stops when trying to subscribe to my subscriptions while logged out', function(done) {
-    sub = Meteor.subscribe('myChannels', {
+    var sub = Meteor.subscribe('myChannels', {
       onReady() {
         fail('should stop');
+        sub.stop();
         done();
       },
       onStop(err) {
@@ -54,23 +60,35 @@ describe('Channel publications', function() {
   });
 
   it('should publish my subscribed channels', function(done) {
-    Meteor.loginWithPassword('Phony', 'password', function(){
-      // Subscribe the user to some channels
-      User.me().subscribeTo(channels[0]);
-      User.me().subscribeTo(channels[1]);
-      User.me().subscribeTo(channels[2]);
 
-      sub = Meteor.subscribe('myChannels', {
-        onReady() {
-          expect(User.getSuscriptions().count()).toBe(3);
-          done();
-        },
-        onStop(err) {
-          fail(err);
-          done();
-        }
+    // Login
+    Meteor.loginWithPassword('Phony', 'password', function() {
+      
+      // Subscribe the user to some channels
+      Meteor.call('/users/subscribe', channels[0], function() {
+        Meteor.call('/users/subscribe', channels[1], function() {
+          Meteor.call('/users/subscribe', channels[2], function() {
+
+            // Subscribe to the publication
+            var sub = Meteor.subscribe('myChannels', {
+              onReady() {
+                expect(User.me().getSubscriptions().count()).toBe(3);
+                sub.stop();
+                done();
+              },
+              onStop(err) {
+                if(err) {
+                  fail(err);
+                  done();
+                }
+              }
+            });
+          });
+        });
       });
+
     });
+
   });
 
 });
