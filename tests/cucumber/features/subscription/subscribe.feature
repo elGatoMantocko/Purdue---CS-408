@@ -28,3 +28,13 @@ Feature: Subscribe
     And I am on the home page
     When I click on "CS408" subscribe button
     Then the "CS408" channel should be in "#mychannels"
+
+  @dev
+  Scenario: Unsubscribe from a specific channel
+    Given the database has "4" channels
+    And I am signed in
+    And I create a channel with title "CS408" and query "pony+galaxy"
+    And I am on the home page
+    When I click on "CS408" subscribe button
+    And I click on "CS408" unsubscribe button
+    Then the "CS408" channel should be in "#allchannels"

@@ -18,6 +18,12 @@ module.exports = function () {
     client.click('#allchannels .row #subscribe:nth-child(' + index + ')')
   });
 
+  this.When(/^I click on "([^"]*)" unsubscribe button$/, function (title) {
+    client.waitForVisible('#mychannels');
+    var index = client.getText('#mychannels .row h4').indexOf(title) + 1;
+    client.click('#mychannels .row #unsubscribe:nth-child(' + index + ')')
+  });
+
   this.Then(/^the "([^"]*)" channel should be in "([^"]*)"$/, function (title, element) {
     client.waitForVisible(element);
     var index = client.getText(element + ' .row h4').indexOf(title);
