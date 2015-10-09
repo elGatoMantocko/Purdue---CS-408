@@ -46,14 +46,10 @@ Template.subscribeButton.helpers({
 Template.subscribeButton.events({
   'click button#subscribe': function(e, tmpl) {
     e.preventDefault();
-
-    var user = User.findOne(Meteor.userId());
-    user.subscribeTo(this);
+    Meteor.call('/users/subscribe', this);
   },
   'click button#unsubscribe': function(e, tmpl) {
     e.preventDefault();
-
-    var user = User.findOne(Meteor.userId());
-    user.unsubscribeFrom(this);
+    Meteor.call('/users/unsubscribe', this);
   }
 });
