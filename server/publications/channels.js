@@ -9,7 +9,6 @@ Meteor.publish('latestChannels', function(limit) {
  * Publish my subscribed channels
  */
 Meteor.publish('myChannels', function() {
-  console.log("IN PUB: " + this.userId);
   if(!this.userId) {
     this.error(new Meteor.Error('unauthorized', 'You must be logged in to get your subscriptions.'));
   }
