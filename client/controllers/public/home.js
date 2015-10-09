@@ -1,9 +1,9 @@
 Template.home.onCreated(function() {
   var self = this;
   self.autorun(function() {
-    Meteor.subscribe('latestChannels');
+    self.subscribe('latestChannels');
     if (Meteor.userId()) {
-      Meteor.subscribe('myChannels');
+      self.subscribe('myChannels');
     }
   });
 });

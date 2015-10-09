@@ -106,7 +106,7 @@ User = Astronomy.createClass({
           channelIndex = subscriptions.indexOf(channel.get('_id'));
       if(channelIndex > -1) {
         subscriptions.splice(channelIndex, 1);
-        this.set('profile.channelSubscriptions', subscriptions);
+        this.profile.channelSubscriptions = subscriptions;
         this.save();
       }
       return this;
@@ -115,3 +115,12 @@ User = Astronomy.createClass({
 });
 
 User.me = () => User.findOne({_id: Meteor.userId()});
+
+// Protect the user's profile
+Meteor.users.deny({
+  update() {
+    // Deny all updates to the User's profile
+    //  Any updates must go through a method.
+    return true;
+  }
+});
