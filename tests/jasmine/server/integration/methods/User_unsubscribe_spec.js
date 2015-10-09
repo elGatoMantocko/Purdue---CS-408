@@ -11,6 +11,26 @@ describe('User unsubscribe method', function() {
     this.userIdSpy = spyOn(Meteor, 'userId').and.returnValue(this.fakeUser._id);
   });
 
+  it('throws if we are NOT logged in', function() {
+    // Call through to the original Meteor.user() implementation
+    //   This will return 'null' because we're obviously not logged in
+    this.userSpy.and.callThrough();
+    let channel = new Channel({
+      title: 'Logged out',
+      query: 'Should throw'
+    });
+    channel.save();
+
+    try {
+      Meteor.call('/users/unsubscribe', channel);
+      fail('method should throw if we are not logged in');
+    } catch(e) {
+      expect(e.error).toBe('unauthorized');
+    }
+
+    channel.remove();
+  });
+
   it('throws if the given channel does not exist', function() {
     let channel = new Channel({
       title: 'Logged out',
