@@ -61,7 +61,6 @@ test:
 
     # Test the app with Chrome and ensure all artifacts can be traced back to the chrome run
     - node environments/build/velocity.js:
-        pwd: app
         environment:
           CUCUMBER_SCREENSHOTS_DIR: "$CIRCLE_ARTIFACTS/screenshots/chrome"
           CUCUMBER_JSON_OUTPUT: "$CIRCLE_TEST_REPORTS/chrome.cucumber"
