@@ -5,7 +5,6 @@ Feature: Channels
   # The background will be run for every scenario
   Background:
     Given I am on the home page
-    Given I am signed out
 
   @dev
   Scenario: I am on the home page with 0 channels
