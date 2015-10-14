@@ -3,9 +3,8 @@ Feature: Channel creation
   I want to create a channel
 
   Background:
-    Given I am on the home page
-    And I am signed in
-    When I click on the new channels button
+    Given I am signed in
+    And I am on the new channels page
 
   # Test creation and validation of new channels
   @dev
