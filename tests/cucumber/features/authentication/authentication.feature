@@ -5,7 +5,6 @@ Feature: Authentication
 
   Background:
     Given I am on the home page
-    Given I am signed out
 
   @dev
   Scenario: I can register for an account
