@@ -7,26 +7,15 @@ var url = require('url');
 
 module.exports = function () {
 
-  this.Then(/^I should see "([^"]*)" channels$/, function (expectedCount) {
-    expectedCount = parseInt(expectedCount);
-
-    if(expectedCount > 0) {
-      client.waitForVisible('.list-group');
-    }
-
-    var numberOfChannelsOnPage = client.elements('.list-group-item').value.length;
-    expect(numberOfChannelsOnPage).toEqual(expectedCount);
+  this.Given(/^the database has "([^"]*)" channels$/, function (count) {
+    client.executeAsync(function(count, done) {
+      done(Meteor.call('/fixtures/addChannels', count));
+    }, parseInt(count));
   });
 
   this.When(/^I click on the new channels button$/, function () {
     client.waitForVisible("#newchannel-btn");
     client.click("#newchannel-btn");
-  });
-
-  this.When(/^the database has "([^"]*)" channels$/, function (count) {
-    client.executeAsync(function(count, done) {
-      done(Meteor.call('/fixtures/addChannels', count));
-    }, parseInt(count));
   });
 
   this.When(/^I enter "([^"]*)" into the title field$/, function (text) {
@@ -62,6 +51,17 @@ module.exports = function () {
   this.Then(/^channel "([^"]*)" should display "([^"]*)"$/, function (element, text) {
     client.waitForVisible('#channel-' + element);
     expect(client.getText('#channel-' + element)).toBe(text);
+  });
+
+  this.Then(/^I should see "([^"]*)" channels$/, function (expectedCount) {
+    expectedCount = parseInt(expectedCount);
+
+    if(expectedCount > 0) {
+      client.waitForVisible('.list-group');
+    }
+
+    var numberOfChannelsOnPage = client.elements('.list-group-item').value.length;
+    expect(numberOfChannelsOnPage).toEqual(expectedCount);
   });
 
 };
