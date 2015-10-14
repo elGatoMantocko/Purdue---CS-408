@@ -7,26 +7,12 @@ Feature: Channels
     Given I am on the home page
 
   @dev
-  Scenario: I am on the home page with 0 channels
-    Then I should see "0" channels 
-
-  @dev
-  Scenario: I am on the home page with 1 channel
-    When the database has "1" channels
-    Then I should see "1" channels
-
-  @dev
-  Scenario: I am on the home page with 5 channel
-    When the database has "5" channels
-    Then I should see "5" channels
-
-  @dev
-  Scenario: While logged out, navigate to new channel page 
+  Scenario: Navigate to new channel page 
     When I click on the new channels button
     Then the new channel header should have text "You must log in first"
 
   @dev
-  Scenario: While logged in, navigate to new channel page
+  Scenario: Log in and navigate to new channel page
     Given I am signed in
     When I click on the new channels button
     Then the new channel header should have text "Create a new channel"
@@ -42,7 +28,7 @@ Feature: Channels
     And channel "query" should display "pony+galaxy"
 
   @dev
-  Scenario: Try to create channel without a title
+  Scenario: Submit channel with empty title
     Given I am signed in
     When I click on the new channels button
     And I enter "pony+galaxy" into the query field
@@ -50,7 +36,7 @@ Feature: Channels
     Then I should see a title required validation error
 
   @dev
-  Scenario: Try to create channel without a query
+  Scenario: Submit channel with empty query
     Given I am signed in
     When I click on the new channels button
     And I enter "Galaxy" into the title field
