@@ -10,6 +10,8 @@ Package.onUse(function(api) {
   api.use('digilord:faker@1.0.7');
   api.use('mongo@1.1.1', 'server');
   api.use('browser-policy@1.0.5');
+  api.use('kadira:flow-router@2.7.0');
   api.addFiles('fixtures.js', 'server');
+  api.addFiles('routes.js', 'client');
   api.addFiles('browser_policy.js', 'server');
 });

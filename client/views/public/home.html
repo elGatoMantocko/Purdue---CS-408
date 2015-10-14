@@ -1,10 +1,36 @@
 <template name="home">
-  <div class="list-group">
+  {{#if currentUser}}
+    <div id="mychannels" class="list-group">
+      {{#each mysubs}}
+        {{> channelrow}}
+      {{/each}}
+    </div>
+  {{/if}}
+  <div id="allchannels" class="list-group">
     {{#each channels}}
-      <a href="/channels/{{_id}}" class="list-group-item">
+      {{> channelrow}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="channelrow">
+  <div class="row list-group-item">
+    <div class="pull-left">
+      <a href="/channels/{{_id}}">
         <h4 class="list-group-item-heading">{{title}}</h4>
         <p class="list-group-item-text">{{query}}</p>
       </a>
-    {{/each}}
+    </div>
+    <div class="pull-right">
+      {{> subscribeButton}}
+    </div>
   </div>
+</template>
+
+<template name="subscribeButton">
+  {{#if subscribed}}
+  <button id="unsubscribe" type="submit" class="{{#unless currentUser}}disabled{{/unless}} btn btn-primary">Unsubscribe</button>
+  {{else}}
+    <button id="subscribe" type="submit" class="{{#unless currentUser}}disabled{{/unless}} btn btn-primary">Subscribe</button>
+  {{/if}}
 </template>

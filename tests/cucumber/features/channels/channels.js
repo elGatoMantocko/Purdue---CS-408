@@ -7,26 +7,29 @@ var url = require('url');
 
 module.exports = function () {
 
-  this.Then(/^I should see "([^"]*)" channels$/, function (expectedCount) {
-    expectedCount = parseInt(expectedCount);
+  this.Given(/^the database has "([^"]*)" channels$/, function (count) {
+    client.executeAsync(function(count, done) {
+      done(Meteor.call('/fixtures/addChannels', count));
+    }, parseInt(count));
+  });
 
-    if(expectedCount > 0) {
-      client.waitForVisible('.list-group');
-    }
+  this.Given(/^I create a channel with title "([^"]*)" and query "([^"]*)"$/, function (title, query) {
+    client.waitForVisible("#newchannel-btn");
+    client.click("#newchannel-btn");
 
-    var numberOfChannelsOnPage = client.elements('.list-group-item').value.length;
-    expect(numberOfChannelsOnPage).toEqual(expectedCount);
+    client.waitForVisible("input#title");
+    client.setValue("input#title", title);
+
+    client.waitForVisible("input#query");
+    client.setValue("input#query", query);
+
+    client.waitForVisible("input#submit");
+    client.click("input#submit");
   });
 
   this.When(/^I click on the new channels button$/, function () {
     client.waitForVisible("#newchannel-btn");
     client.click("#newchannel-btn");
-  });
-
-  this.When(/^the database has "([^"]*)" channels$/, function (count) {
-    client.executeAsync(function(count, done) {
-      done(Meteor.call('/fixtures/addChannels', count));
-    }, parseInt(count));
   });
 
   this.When(/^I enter "([^"]*)" into the title field$/, function (text) {
@@ -42,6 +45,17 @@ module.exports = function () {
   this.When(/^I submit the new channel form$/, function () {
     client.waitForVisible("input#submit");
     client.click("input#submit");
+  });
+
+  this.Then(/^I should see "([^"]*)" channels$/, function (expectedCount) {
+    expectedCount = parseInt(expectedCount);
+
+    if(expectedCount > 0) {
+      client.waitForVisible('.list-group');
+    }
+
+    var numberOfChannelsOnPage = client.elements('.list-group-item').value.length;
+    expect(numberOfChannelsOnPage).toEqual(expectedCount);
   });
 
   this.Then(/^the new channel header should have text "([^"]*)"$/, function (text) {
