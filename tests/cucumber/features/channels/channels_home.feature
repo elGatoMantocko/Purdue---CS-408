@@ -12,7 +12,7 @@ Feature: Home channels
     Then I should see "0" channels
 
   @dev
-  Scenario: Can see 5 channels on the home page
+  Scenario: Can see 2 channels on the home page
     Given the database has "2" channels
     Then I should see "2" channels
 
