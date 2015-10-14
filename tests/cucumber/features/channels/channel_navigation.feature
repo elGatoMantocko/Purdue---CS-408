@@ -16,3 +16,4 @@ Feature: New channel navigation
     Given I am signed in
     When I click on the new channels button
     Then the new channel header should have text "Create a new channel"
+
