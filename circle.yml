@@ -1,12 +1,3 @@
-machine:
-
-  java:
-    version: oraclejdk8
-
-  environment:
-    # Enable this to debug builds
-    #VELOCITY_DEBUG: true
-
 dependencies:
 
   cache_directories:
