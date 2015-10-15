@@ -11,6 +11,7 @@ Feature: Authentication
     When I click on the signup link
     And I enter "Galaxy" into the username field
     And I enter "password" into the password field
+    And I enter "password" into the password again field
     And I submit the registration form
     Then "Galaxy" should be signed in
 
@@ -20,4 +21,4 @@ Feature: Authentication
     And I enter "Phony" into the username field
     And I enter "password" into the password field
     And I submit the login form
-    Then "Galaxy" should be signed in
+    Then "Phony" should be signed in
