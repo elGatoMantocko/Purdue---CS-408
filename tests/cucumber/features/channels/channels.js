@@ -9,7 +9,7 @@ module.exports = function () {
 
   this.Given(/^the database has "([^"]*)" channels$/, function (count) {
     client.executeAsync(function(count, done) {
-      done(Meteor.call('/fixtures/addChannels', count));
+      Meteor.call('/fixtures/addChannels', count, done);
     }, parseInt(count));
   });
 
