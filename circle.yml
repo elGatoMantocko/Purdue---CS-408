@@ -49,9 +49,6 @@ dependencies:
     # -- INSTALL VELOCITY CLI --
     - npm install -g velocity-cli
 
-    # Install Meteor related dependencies
-    - meteor update
-
 test:
 
   override:
@@ -60,12 +57,12 @@ test:
     # - velocity test-package login --ci --settings settings.development.json
 
     # Test the app with Chrome and ensure all artifacts can be traced back to the chrome run
-    - velocity test-app --ci
+    - velocity test-app --ci:
         environment:
           SELENIUM_BROWSER: chrome
 
     # Test the app with Firefox and ensure all artifacts can be traced back to the firefox run
-    - velocity test-app --ci
+    - velocity test-app --ci:
         environment:
           # no need to run server integration tests again since browser choice has no impact
           JASMINE_SERVER_INTEGRATION: 0
