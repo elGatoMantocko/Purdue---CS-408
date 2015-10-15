@@ -1,6 +1,6 @@
 # BetterBackground
 
-[![Build Status](https://travis-ci.org/elGatoMantocko/BetterBackground.svg?branch=develop)](https://travis-ci.org/elGatoMantocko/BetterBackground)
+[![Circle CI](https://circleci.com/gh/elGatoMantocko/BetterBackground/tree/develop.svg?style=svg)](https://circleci.com/gh/elGatoMantocko/BetterBackground/tree/develop)
 
 ### Build instructions
 
