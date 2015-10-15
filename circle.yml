@@ -30,3 +30,7 @@ test:
     - velocity test-app --ci:
         environment:
           SELENIUM_BROWSER: phantomjs
+          CUCUMBER_SCREENSHOTS_DIR: "$CIRCLE_ARTIFACTS/screenshots/chrome"
+          CUCUMBER_JSON_OUTPUT: "$CIRCLE_TEST_REPORTS/chrome.cucumber"
+    - mkdir -p $CIRCLE_ARTIFACTS/phantom
+    - cp .meteor/local/log/*.log $CIRCLE_ARTIFACTS/phantom 
