@@ -27,9 +27,19 @@ test:
 
   override:
 
+    # -- RUN JASMINE --
     - velocity test-app --ci:
         timeout: 1200
         environment:
+          CUCUMBER: 0
+          JASMINE_BROWSER: PhantomJS
+
+    # -- RUN CUCUMBER --
+    - velocity test-app --ci:
+        timeout: 2400
+        environment:
+          JASMINE_CLIENT_INTEGRATION: 0
+          JASMINE_SERVER_INTEGRATION: 0
           SELENIUM_BROWSER: phantomjs
           CUCUMBER_SCREENSHOTS_DIR: "$CIRCLE_ARTIFACTS/screenshots/chrome"
           CUCUMBER_JSON_OUTPUT: "$CIRCLE_TEST_REPORTS/chrome.cucumber"
