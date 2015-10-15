@@ -7,3 +7,9 @@ Template.home.helpers({
     return Channel.getLatest().fetch();
   }
 });
+
+Template.subscribeButton.helpers({
+  subscribed: function() {
+    return User.me().isSubscribedTo(this);
+  }
+});
