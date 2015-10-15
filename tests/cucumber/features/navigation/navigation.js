@@ -11,6 +11,10 @@ module.exports = function () {
     client.url(process.env.ROOT_URL);
   });
 
+  this.Given(/^I am on the new channels page$/, function () {
+    client.url(url.resolve(process.env.ROOT_URL, '/channels/new'));
+  });
+
   this.When(/^I navigate to "([^"]*)"$/, function (relativePath) {
     client.url(url.resolve(process.env.ROOT_URL, relativePath));
   });

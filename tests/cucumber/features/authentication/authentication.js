@@ -16,12 +16,10 @@ module.exports = function () {
     this.AuthenticationHelper.logout();
   });
 
-  this.Then(/^"([^"]*)" should be signed in$/, function(useremail) {
-    var userId = client.executeAsync(function(done) {
-      done(Meteor.userId());
+  this.Then(/^"([^"]*)" should be signed in$/, function(username) {
+    client.waitUntil(function() {
+      return username === client.getText('#login-dropdown-list .dropdown-toggle');
     });
-
-    expect(userId).not.toBeNull();
   });
 
   this.When(/^I click on the signup link$/, function() {
@@ -46,13 +44,18 @@ module.exports = function () {
     client.setValue("#login-password", text);
   });
 
+  this.When(/^I enter "([^"]*)" into the password again field$/, function (text) {
+    client.waitForVisible("#login-password-again");
+    client.setValue("#login-password-again", text);
+  });
+
   this.When(/^I submit the registration form$/, function () {
-    client.waitForVisible("#login-buttons-password");
+    client.waitForExist("#login-buttons-password");
     client.click("#login-buttons-password");
   });
 
   this.When(/^I submit the login form$/, function () {
-    client.waitForVisible("#login-buttons-password");
+    client.waitForExist("#login-buttons-password");
     client.click("#login-buttons-password");
   });
 
