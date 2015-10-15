@@ -28,6 +28,7 @@ test:
   override:
 
     - velocity test-app --ci:
+        timeout: 1200
         environment:
           SELENIUM_BROWSER: phantomjs
           CUCUMBER_SCREENSHOTS_DIR: "$CIRCLE_ARTIFACTS/screenshots/chrome"
