@@ -12,7 +12,8 @@ Feature: Channel creation
     When I enter "Galaxy" into the title field
     And I enter "pony+galaxy" into the query field
     And I submit the new channel form
-    Then channel "title" should display "Galaxy"
+    Then I should be on the new channels page
+    And channel "title" should display "Galaxy"
     And channel "query" should display "pony+galaxy"
 
   @dev

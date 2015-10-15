@@ -43,6 +43,10 @@ module.exports = function () {
     expect(client.getText("#title-error")).toBe("The value of the \"title\" field is required");
   });
 
+  this.Then(/^I should be on the new channels page$/, function () {
+    expect(url.parse(client.url().value).path).toMatch(/^\/channels\/[a-zA-Z0-9]*/);
+  });
+
   this.Then(/^I should see a query required validation error$/, function () {
     client.waitForVisible("#query-error");
     expect(client.getText("#query-error")).toBe("The value of the \"query\" field is required");
