@@ -18,5 +18,9 @@ Template.subscribeButton.events({
   'click button#subscribe': function(e, tmpl) {
     e.preventDefault();
     Meteor.call('/users/subscribe', this);
+  },
+  'click button#unsubscribe': function(e, tmpl) {
+    e.preventDefault();
+    Meteor.call('/users/unsubscribe', this);
   }
 });
