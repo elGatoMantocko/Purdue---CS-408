@@ -15,18 +15,18 @@ module.exports = function () {
 
   this.When(/^I click on the "([^"]*)" channel\'s subscribe button$/, function (title) {
     client.waitForVisible("#channels-list");
-    // We have to know which row to
-    // click on based on the title of the channel
+    // get an array of the text of all of the channel-row headers and find the index that 'title' exists
+    // the nth-child selector doesn't index at 0 so we need to add one to it
     var index = client.getText(".channel-row h4").indexOf(title) + 1;
     
-    // We click the unsubscribe button of the 
+    // We click the subscribe button of the channel
     client.click('.channel-row:nth-child(' + index + ') #subscribe')
   });
 
   this.Then(/^I should be subscribed to "([^"]*)"$/, function (title) {
     client.waitForVisible("#channels-list");
-    // We have to know which row to
-    // click on based on the title of the channel
+    // get an array of the text of all of the channel-row headers and find the index that 'title' exists
+    // the nth-child selector doesn't index at 0 so we need to add one to it
     var index = client.getText(".channel-row h4").indexOf(title) + 1;
     client.waitForVisible('.channel-row:nth-child(' + index + ') #unsubscribe');
   });
