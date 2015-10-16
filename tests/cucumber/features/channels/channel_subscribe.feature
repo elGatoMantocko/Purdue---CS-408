@@ -11,5 +11,5 @@ Feature: Channel subscription
   @dev
   Scenario: I can subscribe to a single channel
     Given I created channel "Galaxy" with "galaxy pony"
-    When I click on the "Galaxy" channel subscribe button
+    When I click on the "Galaxy" channel's subscribe button
     Then I should be subscribed to "Galaxy"

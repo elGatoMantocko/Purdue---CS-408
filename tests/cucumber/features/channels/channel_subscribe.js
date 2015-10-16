@@ -13,7 +13,7 @@ module.exports = function () {
     }, title, query);
   });
 
-  this.When(/^I click on the "([^"]*)" channel subscribe button$/, function (title) {
+  this.When(/^I click on the "([^"]*)" channel\'s subscribe button$/, function (title) {
     client.waitForVisible("#channels-list");
     // We have to know which row to
     // click on based on the title of the channel
@@ -24,6 +24,11 @@ module.exports = function () {
   });
 
   this.Then(/^I should be subscribed to "([^"]*)"$/, function (title) {
+    client.waitForVisible("#channels-list");
+    // We have to know which row to
+    // click on based on the title of the channel
+    var index = client.getText(".channel-row h4").indexOf(title) + 1;
+    client.waitForVisible('.channel-row:nth-child(' + index + ') #unsubscribe');
   });
 
 };
