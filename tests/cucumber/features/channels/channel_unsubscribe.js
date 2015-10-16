@@ -13,7 +13,7 @@ module.exports = function () {
     }, title, query);
   });
 
-  this.When(/^I click on the "([^"]*)" channel\'s subscribe button$/, function (title) {
+  this.Given(/^I am subscribed to "([^"]*)"$/, function (title) {
     client.waitForVisible("#channels-list");
     // get an array of the text of all of the channel-row headers and find the index that 'title' exists
     // the nth-child selector doesn't index at 0 so we need to add one to it
@@ -21,14 +21,26 @@ module.exports = function () {
     
     // We click the subscribe button of the channel
     client.click('.channel-row:nth-child(' + index + ') #subscribe')
+    client.waitForVisible('.channel-row:nth-child(' + index + ') #unsubscribe');
   });
 
-  this.Then(/^I should be subscribed to "([^"]*)"$/, function (title) {
+  this.When(/^I click on the "([^"]*)" channel\'s unsubscribe button$/, function (title) {
     client.waitForVisible("#channels-list");
     // get an array of the text of all of the channel-row headers and find the index that 'title' exists
     // the nth-child selector doesn't index at 0 so we need to add one to it
     var index = client.getText(".channel-row h4").indexOf(title) + 1;
-    client.waitForVisible('.channel-row:nth-child(' + index + ') #unsubscribe');
+    
+    // We click the unsubscribe button of the 
+    client.click('.channel-row:nth-child(' + index + ') #unsubscribe')
+  });
+
+  this.Then(/^I should be unsubscribed from "([^"]*)"$/, function (title) {
+    client.waitForVisible("#channels-list");
+    // get an array of the text of all of the channel-row headers and find the index that 'title' exists
+    // the nth-child selector doesn't index at 0 so we need to add one to it
+    var index = client.getText(".channel-row h4").indexOf(title) + 1;
+    client.waitForVisible('.channel-row:nth-child(' + index + ') #subscribe');
   });
 
 };
+
