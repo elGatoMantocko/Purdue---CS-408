@@ -4,6 +4,8 @@ Template.channel.onCreated(function() {
     var channelId = FlowRouter.getParam('id');
     Meteor.subscribe('oneChannel', channelId);
   });
+
+  self.urls = new ReactiveVar([]);
 });
 
 Template.channel.helpers({
@@ -14,8 +16,13 @@ Template.channel.helpers({
 
   preview: function() {
     var channel = Channel.findOne(FlowRouter.getParam('id'));
-    var urls = Meteor.call('/channels/getUrls', channel);
-    urls = urls.splice(10, urls.length - 10);
-    return urls;
+    Meteor.call('/channels/getUrls', channel, (err, res) => {
+      if (err) {
+        throw err;
+      }
+      this.urls.set(res.splice(10, res.length - 10));
+      
+    });
+    return this.urls;
   }
 });
