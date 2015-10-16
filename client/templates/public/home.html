@@ -1,7 +1,7 @@
 <template name="home">
-  <div class="list-group">
+  <div id="channels-list" class="list-group">
     {{#each channels}}
-      <div class="row list-group-item">
+      <div class="row channel-row list-group-item">
         <div class="pull-left">
           <a href="/channels/{{_id}}">
             <h4 class="list-group-item-heading">{{title}}</h4>
