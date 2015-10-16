@@ -10,7 +10,10 @@ Template.home.helpers({
 
 Template.subscribeButton.helpers({
   subscribed: function() {
-    return User.me().isSubscribedTo(this);
+    if(Meteor.user()) {
+      return User.me().isSubscribedTo(this);
+    }
+    return false;
   }
 });
 
