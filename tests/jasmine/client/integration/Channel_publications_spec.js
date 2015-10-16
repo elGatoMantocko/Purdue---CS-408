@@ -43,4 +43,49 @@ describe('Channel publications', function() {
       }
     });
   });
+
+  it('stops when trying to subscribe to my subscriptions while logged out', function(done) {
+    var sub = Meteor.subscribe('myChannels', {
+      onReady() {
+        fail('should stop');
+        sub.stop();
+        done();
+      },
+      onStop(err) {
+        expect(err.error).toBe('unauthorized');
+        done();
+      }
+    });
+  });
+
+  it('should publish my subscribed channels', function(done) {
+
+    // Login
+    Meteor.loginWithPassword('Phony', 'password', function() {
+      
+      // Subscribe the user to some channels
+      Meteor.call('/users/subscribe', channels[0], function() {
+        Meteor.call('/users/subscribe', channels[1], function() {
+          Meteor.call('/users/subscribe', channels[2], function() {
+
+            // Subscribe to the publication
+            var sub = Meteor.subscribe('myChannels', {
+              onReady() {
+                expect(User.me().getSubscriptions().count()).toBe(3);
+                sub.stop();
+                done();
+              },
+              onStop(err) {
+                if(err) {
+                  fail(err);
+                  done();
+                }
+              }
+            });
+          });
+        });
+      });
+
+    });
+  });
 });
