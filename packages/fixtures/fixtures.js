@@ -59,5 +59,22 @@ Meteor.methods({
       channels.push(channel);
     });
     return channels;
+  },
+
+  /*
+   * Add a specific channel
+   *
+   * @param{String} paramtitle Title of the channel
+   * @param{String} paramquery Query of the channel
+   */
+  '/fixtures/addChannel': function(title, query) {
+    check(title, String);
+    check(query, String);
+
+    var channel = new Channel({
+      title, query
+    });
+    channel.save();
+    return channel;
   }
 });
