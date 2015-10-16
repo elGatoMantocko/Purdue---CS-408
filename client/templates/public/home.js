@@ -1,5 +1,5 @@
 Template.home.onCreated(function() {
-  Meteor.subscribe('latestChannels');
+  this.subscribe('latestChannels');
 });
 
 Template.home.helpers({
@@ -10,7 +10,10 @@ Template.home.helpers({
 
 Template.subscribeButton.helpers({
   subscribed: function() {
-    return User.me().isSubscribedTo(this);
+    if(Meteor.user()) {
+      return User.me().isSubscribedTo(this);
+    }
+    return false;
   }
 });
 
@@ -18,5 +21,9 @@ Template.subscribeButton.events({
   'click button#subscribe': function(e, tmpl) {
     e.preventDefault();
     Meteor.call('/users/subscribe', this);
+  },
+  'click button#unsubscribe': function(e, tmpl) {
+    e.preventDefault();
+    Meteor.call('/users/unsubscribe', this);
   }
 });
