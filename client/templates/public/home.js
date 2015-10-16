@@ -13,3 +13,10 @@ Template.subscribeButton.helpers({
     return User.me().isSubscribedTo(this);
   }
 });
+
+Template.subscribeButton.events({
+  'click button#subscribe': function(e, tmpl) {
+    e.preventDefault();
+    Meteor.call('/users/subscribe', this);
+  }
+});
