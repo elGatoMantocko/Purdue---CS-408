@@ -21,42 +21,19 @@ describe('image fetcher', function() {
       query: 'little flower ponies'
     });
     channel.save();
-    spyOn(Modules.server.GoogleImageSearcher, 'search').and.callFake(function(query, options) {
-      options.callback(null, [ 
-        { url: 'www.test.com' },
-        { url: 'www.test.com' },
-        { url: 'www.test.com' },
-        { url: 'www.test.com' }
-      ]);
-    });
+    spyOn(Modules.server, 'googleImageSearchSync').and.returnValue([
+      { url: 'www.test.com' },
+      { url: 'www.test.com' },
+      { url: 'www.test.com' },
+      { url: 'www.test.com' }
+    ]);
     urls = Meteor.call('/channels/getUrls', channel);
     expect(urls.length).toEqual(64);
     for (i = 0; i < urls.length; i++) {
-      expect(urls[i]).not.toEqual('');
+      expect(urls[i].url).not.toEqual('');
     }
 
     // Clean up 
     channel.remove();
-  });
-
-  it('Should return an error', function() {
-    let channel = new Channel({
-      title: 'My Test Channel',
-      query: 'little flower ponies'
-    });
-    channel.save();
-    spyOn(Modules.server.GoogleImageSearcher, 'search').and.callFake(function(query, options) {
-      options.callback('Error: This is a fake Error', [ 
-        { url: 'www.test.com' },
-        { url: 'www.test.com' },
-        { url: 'www.test.com' },
-        { url: 'www.test.com' }
-      ]);
-    });
-    urls = Meteor.call('/channels/getUrls', channel);
-    expect(urls[0]).toEqual('Error: This is a fake Error'); 
-    // Clean up 
-    channel.remove();
-
   });
 });
