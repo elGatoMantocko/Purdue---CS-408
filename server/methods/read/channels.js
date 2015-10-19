@@ -12,9 +12,8 @@ Meteor.methods({
     check(channel, Channel);
  
     images = [];
-    images = _.union(images, _.pluck(Modules.server.googleImageSearchSync(channel.get('query')), 'url'));
+    images = _.union(images, Modules.server.googleImageSearchSync(channel.get('query')));
 
-    console.log(images);
     return images;
   }
 });
