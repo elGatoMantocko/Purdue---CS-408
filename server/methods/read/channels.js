@@ -12,9 +12,9 @@ Meteor.methods({
     check(channel, Channel);
  
     images = [];
-    for (var i = 0; i < 16; i++) {
-      images = images.concat(Modules.server.googleImageSearchSync(channel.get('query')));
-    }
+    images = _.union(images, _.pluck(Modules.server.googleImageSearchSync(channel.get('query')), 'url'));
+
+    console.log(images);
     return images;
   }
 });

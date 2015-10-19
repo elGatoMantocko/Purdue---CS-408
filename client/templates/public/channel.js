@@ -3,9 +3,12 @@ Template.channel.onCreated(function() {
   self.autorun(function() {
     var channelId = FlowRouter.getParam('id');
     self.subscribe('oneChannel', channelId);
+    self.urls = new ReactiveVar([]);
+    Meteor.call('/channels/getUrls', Channel.findOne(), function(err, res) {
+      self.urls.set(res);
+    });
   });
 
-  self.urls = new ReactiveVar([]);
 });
 
 Template.channel.helpers({
@@ -13,13 +16,7 @@ Template.channel.helpers({
     var channelId = FlowRouter.getParam('id');
     return Channel.findOne(channelId);
   },
-
   preview: function() {
-    var self = Template.instance();
-    var channel = Channel.findOne(FlowRouter.getParam('id'));
-    var thing = Meteor.call('/channels/getUrls', channel, function(err, res) {
-      self.urls.set(res);
-    });
-    return self.urls.get();
+    return Template.instance().urls.get();
   }
 });
