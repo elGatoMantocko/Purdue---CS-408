@@ -2,9 +2,15 @@ Template.channel.onCreated(function() {
   var self = this;
   self.autorun(function() {
     var channelId = FlowRouter.getParam('id');
+
     self.subscribe('oneChannel', channelId);
+    var channel = Channel.findOne(channelId);
+
     self.urls = new ReactiveVar([]);
-    Meteor.call('/channels/getUrls', Channel.findOne(), function(err, res) {
+    Meteor.call('/channels/getUrls', channel, function(err, res) {
+      if (err) {
+        throw err;
+      }
       self.urls.set(res);
     });
   });
