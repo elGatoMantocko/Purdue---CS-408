@@ -7,12 +7,15 @@ Template.channel.onCreated(function() {
     var channel = Channel.findOne(channelId);
 
     self.urls = new ReactiveVar([]);
-    Meteor.call('/channels/getUrls', channel, function(err, res) {
-      if (err) {
-        throw err;
-      }
-      self.urls.set(res);
-    });
+
+    if (channel) {
+      Meteor.call('/channels/getUrls', channel, (err, res) => {
+        if (err) {
+          throw err;
+        }
+        self.urls.set(res);
+      });
+    }
   });
 
 });
