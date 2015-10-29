@@ -8,63 +8,63 @@ var url = require('url');
 module.exports = function () {
 
   this.Given(/^the database has "([^"]*)" channels$/, function (count) {
-    client.executeAsync(function(count, done) {
+    browser.executeAsync(function(count, done) {
       Meteor.call('/fixtures/addChannels', count, done);
     }, parseInt(count));
   });
 
   this.When(/^I click on the new channels button$/, function () {
-    client.waitForVisible("#newchannel-btn");
-    client.click("#newchannel-btn");
+    browser.waitForVisible("#newchannel-btn");
+    browser.click("#newchannel-btn");
   });
 
   this.When(/^I enter "([^"]*)" into the title field$/, function (text) {
-    client.waitForVisible("input#title");
-    client.setValue("input#title", text);
+    browser.waitForVisible("input#title");
+    browser.setValue("input#title", text);
   });
 
   this.When(/^I enter "([^"]*)" into the query field$/, function (text) {
-    client.waitForVisible("input#query");
-    client.setValue("input#query", text);
+    browser.waitForVisible("input#query");
+    browser.setValue("input#query", text);
   });
 
   this.When(/^I submit the new channel form$/, function () {
-    client.waitForVisible("input#submit");
-    client.click("input#submit");
+    browser.waitForVisible("input#submit");
+    browser.click("input#submit");
   });
 
   this.Then(/^the new channel header should have text "([^"]*)"$/, function (text) {
-    client.waitForVisible("#newchannel-header");
-    expect(client.getText("#newchannel-header")).toBe(text);
+    browser.waitForVisible("#newchannel-header");
+    expect(browser.getText("#newchannel-header")).toBe(text);
   });
 
   this.Then(/^I should see a title required validation error$/, function () {
-    client.waitForVisible("#title-error");
-    expect(client.getText("#title-error")).toBe("The value of the \"title\" field is required");
+    browser.waitForVisible("#title-error");
+    expect(browser.getText("#title-error")).toBe("The value of the \"title\" field is required");
   });
 
   this.Then(/^I should be on the new channels page$/, function () {
-    expect(url.parse(client.url().value).path).toMatch(/^\/channels\/[a-zA-Z0-9]*/);
+    expect(url.parse(browser.url().value).path).toMatch(/^\/channels\/[a-zA-Z0-9]*/);
   });
 
   this.Then(/^I should see a query required validation error$/, function () {
-    client.waitForVisible("#query-error");
-    expect(client.getText("#query-error")).toBe("The value of the \"query\" field is required");
+    browser.waitForVisible("#query-error");
+    expect(browser.getText("#query-error")).toBe("The value of the \"query\" field is required");
   });
 
   this.Then(/^channel "([^"]*)" should display "([^"]*)"$/, function (element, text) {
-    client.waitForVisible('#channel-' + element);
-    expect(client.getText('#channel-' + element)).toBe(text);
+    browser.waitForVisible('#channel-' + element);
+    expect(browser.getText('#channel-' + element)).toBe(text);
   });
 
   this.Then(/^I should see "([^"]*)" channels$/, function (expectedCount) {
     expectedCount = parseInt(expectedCount);
 
     if(expectedCount > 0) {
-      client.waitForVisible('.list-group');
+      browser.waitForVisible('.list-group');
     }
 
-    var numberOfChannelsOnPage = client.elements('.list-group-item').value.length;
+    var numberOfChannelsOnPage = browser.elements('.list-group-item').value.length;
     expect(numberOfChannelsOnPage).toEqual(expectedCount);
   });
 
