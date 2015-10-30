@@ -17,46 +17,46 @@ module.exports = function () {
   });
 
   this.Then(/^"([^"]*)" should be signed in$/, function(username) {
-    client.waitUntil(function() {
-      return username === client.getText('#login-dropdown-list .dropdown-toggle');
+    browser.waitUntil(function() {
+      return username === browser.getText('#login-dropdown-list .dropdown-toggle');
     });
   });
 
   this.When(/^I click on the signup link$/, function() {
-    client.waitForVisible("a.dropdown-toggle");
-    client.click("a.dropdown-toggle");
-    client.waitForVisible("#signup-link");
-    client.click("#signup-link");
+    browser.waitForVisible("a.dropdown-toggle");
+    browser.click("a.dropdown-toggle");
+    browser.waitForVisible("#signup-link");
+    browser.click("#signup-link");
   });
 
   this.When(/^I click on the signin link$/, function () {
-    client.waitForVisible("a.dropdown-toggle");
-    client.click("a.dropdown-toggle");
+    browser.waitForVisible("a.dropdown-toggle");
+    browser.click("a.dropdown-toggle");
   });
   
   this.When(/^I enter "([^"]*)" into the username field$/, function (text) {
-    client.waitForVisible("#login-username");
-    client.setValue("#login-username", text);
+    browser.waitForVisible("#login-username");
+    browser.setValue("#login-username", text);
   });
 
   this.When(/^I enter "([^"]*)" into the password field$/, function (text) {
-    client.waitForVisible("#login-password");
-    client.setValue("#login-password", text);
+    browser.waitForVisible("#login-password");
+    browser.setValue("#login-password", text);
   });
 
   this.When(/^I enter "([^"]*)" into the password again field$/, function (text) {
-    client.waitForVisible("#login-password-again");
-    client.setValue("#login-password-again", text);
+    browser.waitForVisible("#login-password-again");
+    browser.setValue("#login-password-again", text);
   });
 
   this.When(/^I submit the registration form$/, function () {
-    client.waitForExist("#login-buttons-password");
-    client.click("#login-buttons-password");
+    browser.waitForExist("#login-buttons-password");
+    browser.click("#login-buttons-password");
   });
 
   this.When(/^I submit the login form$/, function () {
-    client.waitForExist("#login-buttons-password");
-    client.click("#login-buttons-password");
+    browser.waitForExist("#login-buttons-password");
+    browser.click("#login-buttons-password");
   });
 
 };
