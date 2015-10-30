@@ -116,10 +116,10 @@ User = Astronomy.createClass({
 User.me = () => User.findOne({_id: Meteor.userId()});
 
 // Protect the user's profile
-Meteor.users.deny({
-  update() {
-    // Deny all updates to the User's profile
-    //  Any updates must go through a method.
-    return true;
-  }
-});
+// Meteor.users.deny({
+//   update() {
+//     // Deny all updates to the User's profile
+//     //  Any updates must go through a method.
+//     return true;
+//   }
+// });
