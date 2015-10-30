@@ -8,18 +8,18 @@ Channel = Astronomy.createClass({
     /* The title of the Channel */
     title: {
       validator: [
-        Validators.required(),
-        Validators.string(),
-        Validators.maxLength(30)
+        //Validators.required(),
+        //Validators.string(),
+        //Validators.maxLength(30)
       ]
     },
 
     /* The Google Image search query */
     query: {
       validator: [
-        Validators.required(),
-        Validators.string(),
-        Validators.maxLength(250)
+        //Validators.required(),
+        //Validators.string(),
+        //Validators.maxLength(250)
       ]
     },
 
