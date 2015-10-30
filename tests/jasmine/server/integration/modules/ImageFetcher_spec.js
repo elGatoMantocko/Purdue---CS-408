@@ -27,7 +27,7 @@ describe('image fetcher', function() {
       { url: 'www.test.com' },
       { url: 'www.test.com' }
     ]);
-    urls = Meteor.call('/channels/getUrls', channel);
+    urls = Meteor.call('/channels/getUrls', channel._id);
     expect(urls.length).toEqual(4);
     for (i = 0; i < urls.length; i++) {
       expect(urls[i].url).not.toEqual('');
