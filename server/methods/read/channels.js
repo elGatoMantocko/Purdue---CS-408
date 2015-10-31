@@ -2,17 +2,28 @@ Meteor.methods({
   /*
    * Reads a Channel and searches for its images
    *
-   * @param {channelId} the Channel object to read
+   * @param {channel} the Channel object to read
    * @param {start_page} the starting page number
    * @param {num_pages} the number of pages to grab images
    * @return {Images} an array of image objects
    */
+  /*
   '/channels/getUrls': function(channelId) {
     // Check Arguments
     check(channelId, String);
  
     images = [];
     images = images.concat(Modules.server.googleImageSearchSync(Channel.findOne(channelId).get('query')));
+
+    return images;
+  }
+  */
+  '/channels/getUrls': function(channel) {
+    // Check Arguments
+    check(channel, Channel);
+ 
+    images = [];
+    images = images.concat(Modules.server.googleImageSearchSync(channel.get('query')));
 
     return images;
   }
