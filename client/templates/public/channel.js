@@ -1,3 +1,4 @@
+/*
 Template.channel.onCreated(function() {
   var self = this;
   self.autorun(function() {
@@ -5,6 +6,7 @@ Template.channel.onCreated(function() {
     Meteor.subscribe('oneChannel', channelId);
   });
 });
+*/
 
 Template.channel.helpers({
   channel: function() {
