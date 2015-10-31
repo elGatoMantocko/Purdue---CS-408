@@ -15,7 +15,7 @@ describe('image fetcher', function() {
     Channel.remove({});
   });
 
-  it('should return 64 urls from the channel query', function() {
+  it('should return 4 urls from the channel query', function() {
     let channel = new Channel({
       title: 'My Test Channel',
       query: 'little flower ponies'
@@ -27,8 +27,8 @@ describe('image fetcher', function() {
       { url: 'www.test.com' },
       { url: 'www.test.com' }
     ]);
-    urls = Meteor.call('/channels/getUrls', channel);
-    expect(urls.length).toEqual(64);
+    urls = Meteor.call('/channels/getUrls', channel._id);
+    expect(urls.length).toEqual(4);
     for (i = 0; i < urls.length; i++) {
       expect(urls[i].url).not.toEqual('');
     }

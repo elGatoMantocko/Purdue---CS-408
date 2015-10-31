@@ -3,14 +3,14 @@ module.exports = function () {
 
     this.AuthenticationHelper = {
       login: function (username, password) {
-        client.url(process.env.ROOT_URL);
-        client.executeAsync(function (username, password, done) {
+        browser.url(process.env.ROOT_URL);
+        browser.executeAsync(function (username, password, done) {
           Meteor.loginWithPassword(username, password, done);
         }, username, password);
       },
 
       logout: function () {
-        client.executeAsync(function (done) {
+        browser.executeAsync(function (done) {
           Meteor.logout(done);
         });
       },
