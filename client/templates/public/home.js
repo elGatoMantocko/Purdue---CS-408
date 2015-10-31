@@ -20,10 +20,10 @@ Template.subscribeButton.helpers({
 Template.subscribeButton.events({
   'click button#subscribe': function(e, tmpl) {
     e.preventDefault();
-    Meteor.call('/users/subscribe', this);
+    Meteor.call('/users/unsubscribe', this);
   },
   'click button#unsubscribe': function(e, tmpl) {
     e.preventDefault();
-    Meteor.call('/users/unsubscribe', this);
+    Meteor.call('/users/subscribe', this);
   }
 });
