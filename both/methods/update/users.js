@@ -8,9 +8,11 @@ Meteor.methods({
   '/users/subscribe': function(channel) {
     check(channel, Channel);
 
+    /*
     if(!Meteor.user()) {
       throw new Meteor.Error('unauthorized', 'You must be logged in to subscribe to channels.');
     }
+    */
 
     // Check that the channel exists
     if(Channel.findOne(channel.get("_id"))) {
@@ -30,9 +32,11 @@ Meteor.methods({
   '/users/unsubscribe': function(channel) {
     check(channel, Channel);
 
+    /*
     if(!Meteor.user()) {
       throw new Meteor.Error('unauthorized', 'You must be logged in to unsubscribe to channels.');
     }
+    */
 
     // Check that the channel exists
     if(Channel.findOne(channel.get("_id"))) {
