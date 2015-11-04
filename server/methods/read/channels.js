@@ -12,10 +12,7 @@ Meteor.methods({
     // Check Arguments
     check(channelId, String);
  
-    images = [];
-    images = images.concat(Modules.server.googleImageSearchSync(Channel.findOne(channelId).get('query')));
-
-    return images;
+    return Modules.server.googleImageSearchSync(Channel.findOne(channelId).get('query'));
   }
   */
   '/channels/getUrls': function(channel) {
