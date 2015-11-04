@@ -4,10 +4,10 @@
       "version": "1.0.7"
     },
     "google-images": {
-      "version": "0.1.0",
+      "version": "0.1.2",
       "dependencies": {
         "request": {
-          "version": "2.64.0",
+          "version": "2.65.0",
           "dependencies": {
             "bl": {
               "version": "1.0.0",
@@ -31,7 +31,7 @@
                       "version": "0.10.31"
                     },
                     "util-deprecate": {
-                      "version": "1.0.1"
+                      "version": "1.0.2"
                     }
                   }
                 }
@@ -69,13 +69,13 @@
               "version": "1.4.3"
             },
             "qs": {
-              "version": "5.1.0"
+              "version": "5.2.0"
             },
             "tunnel-agent": {
               "version": "0.4.1"
             },
             "tough-cookie": {
-              "version": "2.0.0"
+              "version": "2.2.0"
             },
             "http-signature": {
               "version": "0.11.0",
@@ -112,7 +112,7 @@
               }
             },
             "aws-sign2": {
-              "version": "0.5.0"
+              "version": "0.6.0"
             },
             "stringstream": {
               "version": "0.0.4"
@@ -129,11 +129,8 @@
               "version": "0.1.2"
             },
             "har-validator": {
-              "version": "1.8.0",
+              "version": "2.0.2",
               "dependencies": {
-                "bluebird": {
-                  "version": "2.10.1"
-                },
                 "chalk": {
                   "version": "1.1.1",
                   "dependencies": {
@@ -165,7 +162,7 @@
                   }
                 },
                 "commander": {
-                  "version": "2.8.1",
+                  "version": "2.9.0",
                   "dependencies": {
                     "graceful-readlink": {
                       "version": "1.0.1"
@@ -191,6 +188,14 @@
                     },
                     "xtend": {
                       "version": "4.0.0"
+                    }
+                  }
+                },
+                "pinkie-promise": {
+                  "version": "1.0.0",
+                  "dependencies": {
+                    "pinkie": {
+                      "version": "1.0.0"
                     }
                   }
                 }

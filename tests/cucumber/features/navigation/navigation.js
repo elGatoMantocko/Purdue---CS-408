@@ -8,20 +8,20 @@ var url = require('url');
 module.exports = function () {
 
   this.Given(/^I am on the home page$/, function () {
-    client.url(process.env.ROOT_URL);
+    browser.url(process.env.ROOT_URL);
   });
 
   this.Given(/^I am on the new channels page$/, function () {
-    client.url(url.resolve(process.env.ROOT_URL, '/channels/new'));
+    browser.url(url.resolve(process.env.ROOT_URL, '/channels/new'));
   });
 
   this.When(/^I navigate to "([^"]*)"$/, function (relativePath) {
-    client.url(url.resolve(process.env.ROOT_URL, relativePath));
+    browser.url(url.resolve(process.env.ROOT_URL, relativePath));
   });
 
   this.Then(/^I should see the title "([^"]*)"$/, function (expectedTitle) {
-    client.waitForExist('title');
-    var actual = client.getTitle();
+    browser.waitForExist('title');
+    var actual = browser.getTitle();
     expect(actual).toBe(expectedTitle);
   });
 };
